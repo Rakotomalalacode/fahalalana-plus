@@ -1,3 +1,4 @@
 export const images = {
-    "LogoFalarohy": "/images/LogoFalarohy.png"
+    "LogoFalarohy": "/images/LogoFalarohy.png",
+    "authimage" : "/images/authimage.png"
 }

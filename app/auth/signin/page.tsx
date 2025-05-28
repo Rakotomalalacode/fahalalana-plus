@@ -158,7 +158,7 @@ export default function SignIn() {
           En continuant, vous acceptez les <Link target="_blank" href={'/privacy/conditions-utilisation'} className='text-blue-700 underline'>conditions d'utilisation</Link> de Falarohy et avez lu <Link target="_blank" href={'/privacy/politique-de-confidentialite'} className='text-blue-700 underline'>la politique de confidentialité</Link> de Falarohy
         </div>
       </div>
-      <div className="bg-gray-500 h-screen  hidden lg:block w-2/3">
+      <div className="h-screen bg-orange-500 hidden lg:flex justify-end w-2/3">
 
       </div>
     </div>

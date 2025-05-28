@@ -7,6 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  student
+  teacher
+  admin
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -31,7 +37,7 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId],  references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -43,6 +49,7 @@ model User {
   hashedPassword String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
+  role           Role      @default(student)
 
   accounts Account[]
   sessions Session[]
