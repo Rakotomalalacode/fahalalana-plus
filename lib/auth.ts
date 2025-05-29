@@ -10,6 +10,7 @@ import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -125,12 +126,9 @@ token.role = user.role
 
   return token
 },
-redirect({ url, baseUrl }) {
-  if (url.startsWith("/")) return `${baseUrl}${url}`
-  else if (url.startsWith(baseUrl)) return url
-  return baseUrl
+redirect({ baseUrl }) {
+  return `${baseUrl}/dashboard`
 }
-
 ,
 
 async session({ session, token }) {
