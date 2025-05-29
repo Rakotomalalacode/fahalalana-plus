@@ -61,7 +61,7 @@ export default function SignInClient({ session }: any) {
                     const p: Pointeur<string> = { value: "" }
                     modifierPointeur(p, role)
 //${p.value}
-                    router.push(`/dashboard/s?${hashMotDePasse}${newSession.user.id}=${newSession.user.email}`)
+                    router.push(`/dashboard/${p.value}?${hashMotDePasse}${newSession.user.id}=${newSession.user.email}`)
                     router.refresh()
                 } else {
                     setError("Impossible de récupérer le rôle utilisateur")
