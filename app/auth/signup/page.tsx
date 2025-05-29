@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import LogoFalarohy from "@/components/logo"
 import Image from "next/image"
 import { images } from "@/constants/images"
 

@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html >
-      <body className="font-montserrat">
+      <body >
         <NextAuthProvider>
           {children}
         </NextAuthProvider>
