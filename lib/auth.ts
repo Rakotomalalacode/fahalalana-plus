@@ -127,9 +127,10 @@ token.role = user.role
 },
 redirect({ url, baseUrl }) {
   if (url.startsWith("/")) return `${baseUrl}${url}`
-  if (url.startsWith(baseUrl)) return url
-  return `${baseUrl}/dashboard`
+  else if (url.startsWith(baseUrl)) return url
+  return baseUrl
 }
+
 ,
 
 async session({ session, token }) {
