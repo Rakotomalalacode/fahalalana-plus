@@ -60,8 +60,8 @@ export default function SignInClient({ session }: any) {
 
                     const p: Pointeur<string> = { value: "" }
                     modifierPointeur(p, role)
-//${p.value}
-                    router.push(`/dashboard/${p.value}`)
+
+                    router.push(`/dashboard/${p.value}?${hashMotDePasse}${newSession.user.id}=${newSession.user.email}`)
                     router.refresh()
                 } else {
                     setError("Impossible de récupérer le rôle utilisateur")
@@ -82,7 +82,12 @@ export default function SignInClient({ session }: any) {
 
     return (
         <div>
-            
+            {session ? (
+                <div>
+                    <p>Bienvenue, {session.user?.name}</p>
+                    <SignOutButton />
+                </div>
+            ) : (
                 <div className="min-h-screen font-inter flex flex-wrap items-center justify-between bg-gray-50">
                     <div className="lg:w-1/3 w-full px-8 space-y-3">
                         <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
@@ -198,7 +203,7 @@ export default function SignInClient({ session }: any) {
 
                     </div>
                 </div>
-            
+            )}
         </div>
     )
 }
