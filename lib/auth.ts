@@ -125,7 +125,9 @@ token.role = user.role
 
   return token
 },
-redirect({ baseUrl }) {
+redirect({ url, baseUrl }) {
+  if (url.startsWith("/")) return `${baseUrl}${url}`
+  if (url.startsWith(baseUrl)) return url
   return `${baseUrl}/dashboard`
 }
 ,
