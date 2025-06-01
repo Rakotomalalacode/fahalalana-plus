@@ -3,12 +3,12 @@ import React from 'react';
 
 const CookiePolicyPage = () => {
     const currentDate = new Date().toLocaleDateString();
-    const platformName = <p className='font-major text-oranground'>eduVibe</p> as any;
+    const platformName = <p className='qualyneue'>falarofy</p> as any;
     const privacyPolicyLink = "/privacy/politique-de-confidentialite";
 
     return (
         <>
-            <div className="container mx-auto my-8 px-4 max-w-3xl">
+            <div className="container outfit mx-auto my-8 px-4 max-w-3xl">
                 <div className="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-300 pb-2">
                     Politique de Cookies de {platformName}
                 </div>

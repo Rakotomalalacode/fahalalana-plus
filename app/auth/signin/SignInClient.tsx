@@ -81,15 +81,67 @@ export default function SignInClient({ session }: any) {
         //signIn(provider, { callbackUrl: `/dashboard/${session?.user?.role}` })
     }
 
+    async function continuerDash() {
+        const newSession = await getSession()
+        if (newSession?.user?.role) {
+            const hashMotDePasse = await bcrypt.hash(newSession.user.role, 10)
+
+            const role = newSession.user.role
+
+            function modifierPointeur(p: Pointeur<string>, role: string) {
+                if (role === "teacher") {
+                    p.value = "t"
+                } else if (role === "student") {
+                    p.value = "s"
+                } else if (role === "admin") {
+                    p.value = "a"
+                }
+            }
+
+            const p: Pointeur<string> = { value: "" }
+            modifierPointeur(p, role)
+
+            router.push(`/dashboard/${p.value}?${hashMotDePasse}${newSession.user.id}=${newSession.user.email}`)
+            router.refresh()
+        }
+    }
+
+
     return (
         <div>
             {session ? (
-                <div>
-                    <p>Bienvenue, {session.user?.name}</p>
-                    <SignOutButton />
+                <div className="w-screen outfit  bg-[url(/images/bg-continue.png)] bg-cover bg-no-repeat  h-screen">
+                    <div className="w-screen h-screen bg-[#000000b7] flex items-center justify-center">
+                        <div className="w-[90%] space-y-9 flex flex-col justify-center items-center md:w-96 bg-gray-50 p-6 py-8 rounded-lg">
+                            <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
+                            <p>falar</p>
+                            <Image
+                                src={images.LogoFalarohy}
+                                width={200}
+                                height={200}
+                                className="w-7 h-7"
+                                alt={"LogoFalarohy"} />
+                            <p>hy</p>
+                        </div>
+                            <Image src={session.user?.image ? session.user.image : icons.userdefault} width={160} height={160} alt={"authimage"} className="rounded-full border border-green-400" />
+                            <div className="text-center space-y-3">
+                                <p>{session.user?.name} / <span className="text-green-700">{session.user?.role}</span></p>
+                                <p>{session.user?.email}</p>
+                            </div>
+                            <button
+                                onClick={continuerDash}
+                                                                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                            >
+                                Continuer en tant que {session.user?.name}
+                            </button>
+                           <div className="hover:bg-gray-100 w-full p-2 flex justify-center items-center rounded">
+                            <SignOutButton  />
+                           </div>
+                        </div>
+                    </div>
                 </div>
             ) : (
-                <div className="min-h-screen font-inter flex flex-wrap items-center justify-between bg-gray-50">
+                <div className="min-h-screen outfit font-inter flex flex-wrap items-center justify-between bg-gray-50">
                     <div className="lg:w-1/3 w-full px-8 space-y-3">
                         <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
                             <p>falar</p>
@@ -145,8 +197,6 @@ export default function SignInClient({ session }: any) {
                                 </div>
                             </div>
 
-
-
                             <div>
                                 <button
                                     type="submit"
@@ -199,8 +249,8 @@ export default function SignInClient({ session }: any) {
                         </div>
                         <div className="hidden">
                             {error && (
-                            toast(<div className="text-red-600 outfit text-sm text-center">{error} &#129402; &#129402; &#129402;</div>)
-                        )}
+                                toast(<div className="text-red-600 outfit text-sm text-center">{error} &#129402; &#129402; &#129402;</div>)
+                            )}
                         </div>
                     </div>
                     <div className="h-screen bg-orange-500 hidden lg:flex justify-end w-2/3">

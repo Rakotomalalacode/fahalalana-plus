@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const PrivacyPolicyPage = () => {
     const currentDate = new Date().toLocaleDateString();
-    const platformName = <p className='font-major text-oranground'>eduVibe</p> as any;
+    const platformName = <p className='qualyneue '>falarohy</p> as any;
     const cookiePolicyLink = "/privacy/politique-de-cookies"; // Remplacez par le lien réel si vous en avez un
     const privacyContactEmail = "[Votre adresse e-mail de contact pour la confidentialité]";
     const privacyPostalAddress = "[Votre adresse postale (facultatif)]";
@@ -11,7 +11,7 @@ const PrivacyPolicyPage = () => {
 
     return (
         <>
-            <div className="container mx-auto my-8 px-4 max-w-3xl">
+            <div className="container outfit mx-auto my-8 px-4 max-w-3xl">
                 <div className="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-300 pb-2">
                     Politique de Confidentialité de {platformName}
                 </div>
