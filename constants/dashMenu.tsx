@@ -15,6 +15,7 @@ export const Data = {
   navMain: [
     {
       title: "Dashboard",
+      key: "dashboard",
       url: "t/dash",
       icon: IconDashboard,
     },
@@ -25,17 +26,17 @@ export const Data = {
     // },
     {
       title: "Analytics",
-      url: "#",
+      key: "analytics",
       icon: IconChartBar,
     },
     {
       title: "Cours",
-      url: "#",
+      key: "cours",
       icon: IconFolder,
     },
     {
       title: "Équipe",
-      url: "#",
+      key: "equipe",
       icon: IconUsers,
     },
   ],

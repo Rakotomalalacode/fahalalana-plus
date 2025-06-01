@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 
 export async function SiteHeader() {
-    const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height) font-montserrat">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
