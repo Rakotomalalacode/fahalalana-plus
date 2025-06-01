@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { images } from "@/constants/images"
+import { toast } from "sonner"
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -140,11 +141,6 @@ export default function SignUp() {
               />
             </div>
           </div>
-
-          {error && (
-            <div className="text-red-600 text-sm text-center">{error}</div>
-          )}
-
           <div>
             <button
               type="submit"
@@ -157,6 +153,11 @@ export default function SignUp() {
         </form>
         <div className='text-[12px] mt-7'>
           En continuant, vous acceptez les <Link target="_blank" href={'/privacy/conditions-utilisation'} className='text-blue-700 underline'>conditions d'utilisation</Link> de Falarohy et avez lu <Link target="_blank" href={'/privacy/politique-de-confidentialite'} className='text-blue-700 underline'>la politique de confidentialité</Link> de Falarohy
+        </div>
+        <div className="hidden">
+          {error && (
+            toast(<div className="text-red-600 outfit text-sm text-center">{error} &#129402; &#129402; &#129402;</div>)
+          )}
         </div>
       </div>
       <div className="bg-orange-500 h-screen  hidden lg:block w-2/3">

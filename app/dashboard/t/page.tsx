@@ -20,7 +20,7 @@ export default async function Page() {
       }
       className="outfit"
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar variant="inset" className="sticky" />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">

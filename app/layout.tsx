@@ -1,4 +1,5 @@
 import { NextAuthProvider } from "@/components/providers/session-provider"
+import { Toaster } from "@/components/ui/sonner"
 import "@/styles/globals.css"
 
 export default function RootLayout({
@@ -12,6 +13,7 @@ export default function RootLayout({
         <NextAuthProvider>
           {children}
         </NextAuthProvider>
+        <Toaster />
       </body>
     </html>
   )

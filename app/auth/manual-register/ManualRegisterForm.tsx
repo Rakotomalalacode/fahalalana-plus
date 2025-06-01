@@ -12,7 +12,7 @@ export default function ManualRegisterClient() {
     <div className="min-h-screen outfit flex flex-col items-center space-y-4 justify-center">
       <LogoFalarohy />
       <h1 className="text-2xl font-bold">Créer un compte</h1>
-      <p className="mt-2">
+      <p className="mt-2 text-center">
         Nous n'avons pas trouvé de compte lié à {email}.
       </p>
       <Link

@@ -9,6 +9,7 @@ import { Icons as icons } from "@/constants/icons"
 import { images } from "@/constants/images"
 import { SignOutButton } from "@/components/sign-out-button"
 import bcrypt from "bcryptjs"
+import { toast } from "sonner"
 
 type Pointeur<T> = {
     value: T
@@ -144,9 +145,7 @@ export default function SignInClient({ session }: any) {
                                 </div>
                             </div>
 
-                            {error && (
-                                <div className="text-red-600 text-sm text-center">{error}</div>
-                            )}
+
 
                             <div>
                                 <button
@@ -197,6 +196,11 @@ export default function SignInClient({ session }: any) {
                         </form>
                         <div className='text-[12px] mt-7'>
                             En continuant, vous acceptez les <Link target="_blank" href={'/privacy/conditions-utilisation'} className='text-blue-700 underline'>conditions d'utilisation</Link> de Falarohy et avez lu <Link target="_blank" href={'/privacy/politique-de-confidentialite'} className='text-blue-700 underline'>la politique de confidentialité</Link> de Falarohy
+                        </div>
+                        <div className="hidden">
+                            {error && (
+                            toast(<div className="text-red-600 outfit text-sm text-center">{error} &#129402; &#129402; &#129402;</div>)
+                        )}
                         </div>
                     </div>
                     <div className="h-screen bg-orange-500 hidden lg:flex justify-end w-2/3">
