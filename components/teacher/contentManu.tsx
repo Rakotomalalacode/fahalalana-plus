@@ -1,7 +1,7 @@
 "use client"
 
 import Analytics from "./Analytics"
-import CoursList from "./CoursList"
+import CoursPages from "./CoursPages"
 import Dashboard from "./Dashboard"
 import Equipe from "./Equipe"
 import { useSidebar } from "./SidebarContext"
@@ -11,7 +11,7 @@ export function ContentManu() {
 
 const views: Record<string, React.ReactNode> = {
   dashboard: <Dashboard />,
-  cours: <CoursList />,
+  cours: <CoursPages />,
   equipe: <Equipe />,
   analytics: <Analytics />
 }

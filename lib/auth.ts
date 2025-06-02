@@ -99,6 +99,14 @@ export const authOptions: NextAuthOptions = {
               },
             });
           }
+          // S'il existe, on met à jour l'image de l'utilisateur
+            await prisma.user.update({
+              where: { id: existingUser.id },
+              data: {
+                image: user.image ?? "",
+              },
+            });
+          
           return true;
         } else {
           // L'utilisateur n'existe pas => on refuse la connexion
