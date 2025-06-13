@@ -114,15 +114,15 @@ export default function SignInClient({ session }: any) {
                     <div className="w-screen h-screen bg-[#000000b7] flex items-center justify-center">
                         <div className="w-[90%] space-y-9 flex flex-col justify-center items-center md:w-96 bg-gray-50 p-6 py-8 rounded-lg">
                             <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
-                            <p>falar</p>
-                            <Image
-                                src={images.LogoFalarohy}
-                                width={200}
-                                height={200}
-                                className="w-7 h-7"
-                                alt={"LogoFalarohy"} />
-                            <p>hy</p>
-                        </div>
+                                <p>falar</p>
+                                <Image
+                                    src={images.LogoFalarohy}
+                                    width={200}
+                                    height={200}
+                                    className="w-7 h-7"
+                                    alt={"LogoFalarohy"} />
+                                <p>hy</p>
+                            </div>
                             <Image src={session.user?.image ? session.user.image : icons.userdefault} width={160} height={160} alt={"authimage"} className="rounded-full border border-green-400" />
                             <div className="text-center space-y-3">
                                 <p>{session.user?.name} / <span className="text-green-700">{session.user?.role}</span></p>
@@ -130,13 +130,13 @@ export default function SignInClient({ session }: any) {
                             </div>
                             <button
                                 onClick={continuerDash}
-                                                                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                             >
                                 Continuer en tant que {session.user?.name}
                             </button>
-                           <div className="hover:bg-gray-100 w-full p-2 flex justify-center items-center rounded">
-                            <SignOutButton  />
-                           </div>
+                            <div className="hover:bg-gray-100 w-full p-2 flex justify-center items-center rounded">
+                                <SignOutButton />
+                            </div>
                         </div>
                     </div>
                 </div>

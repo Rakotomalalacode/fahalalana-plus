@@ -43,7 +43,7 @@ export default function SignUp() {
       })
 
       if (res.ok) {
-        router.push("/auth/signin?message=Cuenta creada exitosamente")
+        router.push("/auth/signin?message=Compte créé avec succès")
       } else {
         const data = await res.json()
         setError(data.message || "Erreur lors de la création du compte")
@@ -87,7 +87,7 @@ export default function SignUp() {
               <input
                 id="name"
                 name="name"
-                placeholder="votre nom et prrenom"
+                placeholder="votre nom et prenom"
                 type="text"
                 required
                 className="mt-1 block w-full px-3 py-1.5 placeholder:text-sm border border-gray-300 rounded  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"

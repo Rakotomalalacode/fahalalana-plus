@@ -3,3 +3,10 @@ npx prisma db push
 
 ********
 npm install sonner
+
+
+#00ac69
+#f4a100
+#ff413a
+#3366ff
+rgb(0, 207, 213)

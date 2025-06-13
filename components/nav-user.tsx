@@ -94,14 +94,10 @@ export function NavUser({
               <DropdownMenuItem >
                 Email : {user.email}
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                À propos de Falarohy
-              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="bg-red-400 hover:bg-red-600! text-white!">
-              <IconLogout className="text-white" />
-              <SignOutButton />
+            <DropdownMenuItem className="outfit">
+              À propos de Falarohy
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { type Icon } from "@tabler/icons-react"
+import { IconLogout, type Icon } from "@tabler/icons-react"
 
 import {
   SidebarGroup,
@@ -11,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { SignOutButton } from "./sign-out-button"
 
 export function NavSecondary({
   items,
@@ -37,6 +38,12 @@ export function NavSecondary({
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+    <SidebarMenuItem >
+      <SidebarMenuButton>
+        <IconLogout />
+           <SignOutButton />
+           </SidebarMenuButton>
+ </SidebarMenuItem >
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

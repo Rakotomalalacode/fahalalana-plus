@@ -8,6 +8,7 @@
 :root {
   --outfit:  "Outfit", sans-serif;
   --inter: "Inter", sans-serif;
+  --orangeme: oklch(0.7022 0.2004 45.1);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.13 0.028 261.692);
@@ -43,6 +44,7 @@
 }
 
 @theme inline {
+  --color-orangeme: var(--orangeme);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
