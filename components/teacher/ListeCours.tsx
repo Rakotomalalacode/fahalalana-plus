@@ -21,6 +21,7 @@ import {
 import Image from "next/image"
 import { images } from "@/constants/images"
 import CoursEdits from "./CoursEdits"
+import {DelletCours} from './DelletCours';
 
 export function ListeCours() {
   return (
@@ -35,11 +36,12 @@ export function ListeCours() {
               <div className="w-[90%] flex justify-between items-center">
                 <div>
                   <span className="font-medium">Titre du cours</span>
-                  <p className="text-gray-400">Description du cours</p>
-                  <p className="text-gray-400">16 / 02 / 2025</p>
+                  <p className="text-gray-400 hidden md:block">Description du cours</p>
+                  <p className="text-gray-400 hidden md:block">16 / 02 / 2025</p>
                 </div>
-                <div>
+                <div className="flex items-center gap-5 justify-center">
                   <CoursEdits />
+                  <DelletCours />
                 </div>
               </div>
             </div>

@@ -26,6 +26,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ChartBarStacked } from "lucide-react"
+import Image from "next/image"
+import { images } from "@/constants/images"
 
 export function CreactCategorier() {
   const [open, setOpen] = React.useState(false)
@@ -42,7 +44,7 @@ export function CreactCategorier() {
             <p className="text-lg text-center">Créer un catégorie</p>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] flex flex-col items-center">
           <DrawerHeader>
             <DrawerTitle className="outfit text-center">Crée un nouvelle catégorie</DrawerTitle>
             <DrawerDescription className="outfit -ml-4">
@@ -50,6 +52,16 @@ export function CreactCategorier() {
             </DrawerDescription>
           </DrawerHeader>
           <ProfileForm />
+          <div className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
+                      <p>falar</p>
+                      <Image
+                        src={images.LogoFalarohy}
+                        width={200}
+                        height={200}
+                        className="w-3 h-3"
+                        alt={"LogoFalarohy"} />
+                      <p>hy</p>
+                    </div>
         </DialogContent>
       </Dialog>
     )
@@ -65,7 +77,7 @@ export function CreactCategorier() {
           <p className="text-lg text-center">Créer un catégorie</p>
         </div>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="flex flex-col items-center ">
         <DrawerHeader>
           <DrawerTitle className="outfit text-center">Crée un nouvelle catégorie</DrawerTitle>
           <DrawerDescription className="outfit">
@@ -73,11 +85,21 @@ export function CreactCategorier() {
           </DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4" />
-        <DrawerFooter className="pt-2">
+        <DrawerFooter className="pt-2 w-full">
           <DrawerClose asChild>
-            <Button variant="outline">Anuler</Button>
+            <Button variant="outline" className="rounded">Anuler</Button>
           </DrawerClose>
         </DrawerFooter>
+        <div className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
+                      <p>falar</p>
+                      <Image
+                        src={images.LogoFalarohy}
+                        width={200}
+                        height={200}
+                        className="w-3 h-3"
+                        alt={"LogoFalarohy"} />
+                      <p>hy</p>
+                    </div>
       </DrawerContent>
     </Drawer>
   )
@@ -85,7 +107,7 @@ export function CreactCategorier() {
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
   return (
-    <form className={cn("grid items-start gap-6 outfit", className)}>
+    <form className={cn("grid items-start w-full lg:-mt-3 gap-6 outfit", className)}>
       <div className="grid gap-3">
         <Label htmlFor="username">Catégorie</Label>
         <Input id="username" className="rounded" placeholder="Entre votre nouvelle catégorie" />
