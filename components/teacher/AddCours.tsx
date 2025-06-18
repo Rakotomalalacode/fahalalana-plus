@@ -32,13 +32,24 @@ import {
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ChartBarStacked, FolderPlus,X } from "lucide-react"
+import { ChartBarStacked, FolderPlus, X } from "lucide-react"
 import { ScrollArea } from "../ui/scroll-area"
 import { AlertCircleIcon, ImageUpIcon, XIcon } from "lucide-react"
 
 import { useFileUpload } from "@/hooks/use-file-upload"
 import Image from "next/image"
 import { images } from "@/constants/images"
+
+//////
+
+import { useEffect, useState } from "react"
+
+type Categorie = {
+  id: number
+  nom: string
+  createdAt: string
+}
+
 
 
 const AddCours = () => {
@@ -127,10 +138,32 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
   const previewUrl = files[0]?.preview || null
 
+  //////
+
+  const [categories, setCategories] = useState<Categorie[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories")
+        const data = await res.json()
+        setCategories(data)
+      } catch (err) {
+        console.error("Erreur:", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+
   return (
     <form className={cn(" w-full  outfit", className)}>
       <ScrollArea className=" h-[65vh] lg:h-auto  items-start space-y-6 w-full ">
-        <div className="w-full flex flex-wrap-reverse lg:flex-wrap items-center gap-6 ">
+        <div className="w-full flex flex-wrap-reverse justify-between lg:flex-wrap items-center gap-6 ">
           <div className="lg:w-[40%] w-full ">
             <div className="flex flex-col gap-2 w-full h-[200px]">
               <div className="relative">
@@ -212,9 +245,27 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                   <SelectValue placeholder="Choisir une categorie" />
                 </SelectTrigger>
                 <SelectContent className="rounded">
-                  <SelectItem className="rounded" value="light">Light</SelectItem>
+
+                  {loading ? (
+                    <p className="outfit">Chargement...</p>
+                  ) : categories.length === 0 ? (
+                    <p className="outfit">Aucune catégorie trouvée.</p>
+                  ) : (
+                    <ul className="space-y-2 outfit">
+                      {categories.map((cat) => (
+                        <SelectItem
+                          value={`${cat.nom}`}
+                          key={cat.id}
+                        >
+                          {cat.nom}
+                        </SelectItem>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* <SelectItem className="rounded" value="light">Light</SelectItem>
                   <SelectItem className="rounded" value="dark">Dark</SelectItem>
-                  <SelectItem className="rounded" value="system">System</SelectItem>
+                  <SelectItem className="rounded" value="system">System</SelectItem> */}
                 </SelectContent>
               </Select>
             </div>

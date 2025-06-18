@@ -3,7 +3,12 @@ npx prisma db push
 
 ********
 npm install sonner
+************
 
+npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest 
+
+******
 
 #00ac69
 #f4a100

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-
+import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/ui/button"
@@ -105,14 +105,69 @@ export function CreactCategorier() {
   )
 }
 
-function ProfileForm({ className }: React.ComponentProps<"form">) {
+export function ProfileForm({ className }: React.ComponentProps<"form">) {
+  const [nom, setNom] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    setMessage("")
+
+    try {
+      const res = await fetch("/api/categories", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ nom })
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Erreur inconnue")
+
+      setMessage("Catégorie créée avec succès 🎉")
+      setNom("")
+    } catch (err: any) {
+      setMessage(`Erreur : ${err.message}`)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
-    <form className={cn("grid items-start w-full lg:-mt-3 gap-6 outfit", className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn("grid items-start w-full lg:-mt-3 gap-6 outfit", className)}
+    >
       <div className="grid gap-3">
         <Label htmlFor="username">Catégorie</Label>
-        <Input id="username" className="rounded" placeholder="Entre votre nouvelle catégorie" />
+        <Input
+          id="username"
+          className="rounded"
+          placeholder="Entre votre nouvelle catégorie"
+          value={nom}
+          onChange={(e) => setNom(e.target.value)}
+        />
       </div>
-      <Button className="rounded" type="submit">Valide le catégorie</Button>
+      <Button className="rounded" type="submit" disabled={loading}>
+        {loading ? "En cours..." : "Valider la catégorie"}
+      </Button>
+      {message && <p className="text-sm text-center text-green-500 ">{message}</p>}
     </form>
   )
 }
+
+
+// function ProfileForm({ className }: React.ComponentProps<"form">) {
+//   return (
+//     <form className={cn("grid items-start w-full lg:-mt-3 gap-6 outfit", className)}>
+//       <div className="grid gap-3">
+//         <Label htmlFor="username">Catégorie</Label>
+//         <Input id="username" className="rounded" placeholder="Entre votre nouvelle catégorie" />
+//       </div>
+//       <Button className="rounded" type="submit">Valide le catégorie</Button>
+//     </form>
+//   )
+// }
