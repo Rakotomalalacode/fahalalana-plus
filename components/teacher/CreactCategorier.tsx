@@ -105,8 +105,9 @@ export function CreactCategorier() {
   )
 }
 
+
 export function ProfileForm({ className }: React.ComponentProps<"form">) {
-  const [nom, setNom] = useState("")
+  const [nom_, setNom] = useState("")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
 
@@ -116,6 +117,7 @@ export function ProfileForm({ className }: React.ComponentProps<"form">) {
     setMessage("")
 
     try {
+      const nom = nom_.toLowerCase()
       const res = await fetch("/api/categories", {
         method: "POST",
         headers: {
@@ -126,7 +128,7 @@ export function ProfileForm({ className }: React.ComponentProps<"form">) {
 
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Erreur inconnue")
-
+      alert(nom)
       setMessage("Catégorie créée avec succès 🎉")
       setNom("")
     } catch (err: any) {
@@ -147,7 +149,7 @@ export function ProfileForm({ className }: React.ComponentProps<"form">) {
           id="username"
           className="rounded"
           placeholder="Entre votre nouvelle catégorie"
-          value={nom}
+          value={nom_}
           onChange={(e) => setNom(e.target.value)}
         />
       </div>
