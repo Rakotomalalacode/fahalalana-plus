@@ -56,9 +56,9 @@ export function DelletCours() {
         <Button variant="outline" className="bg-[#ff413a] rounded hover:bg-[#ff413a]/90"><IconTrash size={45} className="text-white"   /></Button>
       </DrawerTrigger>
       <DrawerContent className="font-outfit">
-        <DrawerHeader className="text-left">
+        <DrawerHeader className="text-center">
           <DrawerTitle>Supprimer le cours</DrawerTitle>
-          <DrawerDescription>
+          <DrawerDescription className="text-left">
             Ce cours sera définitivement supprimé. Cette action est irréversible.
           </DrawerDescription>
         </DrawerHeader>

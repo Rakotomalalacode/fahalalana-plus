@@ -10,3 +10,12 @@ npm install sonner
 #ff413a
 #3366ff
 rgb(0, 207, 213)
+
+
+Prix du cours (en Ar) X
+Catégorie X
+Titre du cours X
+Description du cours
+{/*Miniature du Cours (Image, PDF)*/} Photo de couverture du Cours (Image)
+Fichier d'Introduction (PDF, etc.)
+Fichier Principal du Cours (ZIP du dossier) X

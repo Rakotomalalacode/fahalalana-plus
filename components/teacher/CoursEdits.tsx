@@ -81,7 +81,7 @@ const CoursEdits = () => {
                     <div className="flex gap-7 lg:gap-0 flex-wrap justify-between w-full h-full">
                         <ScrollArea className="shadow m-1 p-4 rounded-lg lg:w-[45%] w-full h-[64vh]">
                             <div className="flex flex-wrap w-full gap-6">
-                                <div className="w-fit flex justify-center items-center absolute right-0 mr-6 mt-1.5 lg:mt-0">
+                                {/* <div className="w-fit flex justify-center items-center absolute right-0 mr-6 mt-1.5 lg:mt-0">
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <SidebarMenuAction className="shadow bg-background p-1 w-8 h-8 flex justify-center items-center rounded-full">
@@ -103,7 +103,7 @@ const CoursEdits = () => {
                                             <DropdownMenuSeparator />
                                         </DropdownMenuContent>
                                     </DropdownMenu>
-                                </div>
+                                </div> */}
                                 <Image src={images.LangagePython} width={500} height={500} className="lg:w-64 lg:h-32 rounded-md w-full h-48" alt={"LogoFalarohy"} />
                                 <div className="space-y-3">
                                     <p className="text-xl flex"><span className="block lg:hidden mr-2">Titre : </span> Titre du cours</p>

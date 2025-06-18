@@ -50,7 +50,7 @@ const AddCours = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
-            className="group cursor-pointer relative h-44 w-44 flex flex-col gap-4 justify-center items-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-[#ff413a]/90 hover:bg-[#ff413a] rounded-lg text-whitefocus:outline-none focus:ring-2 focus:ring-offset-2  disabled:opacity-50"
+            className="group cursor-pointer relative h-44 w-44 lg:w-full flex flex-col gap-4 justify-center items-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-[#ff413a]/90 hover:bg-[#ff413a] rounded-lg text-whitefocus:outline-none focus:ring-2 focus:ring-offset-2  disabled:opacity-50"
           >
             <FolderPlus size={40} />
             <p className="text-lg text-center">Créer un cours</p>

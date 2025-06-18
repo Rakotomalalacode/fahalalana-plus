@@ -38,7 +38,7 @@ export function CreactCategorier() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
-            className="group cursor-pointer relative h-44 w-44 flex flex-col gap-4 justify-center items-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-[#00ac69]/90 hover:bg-[#00ac69] rounded-lg text-whitefocus:outline-none focus:ring-2 focus:ring-offset-2  disabled:opacity-50"
+            className="group cursor-pointer relative h-44 w-44 lg:w-full flex flex-col gap-4 justify-center items-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-[#00ac69]/90 hover:bg-[#00ac69] rounded-lg text-whitefocus:outline-none focus:ring-2 focus:ring-offset-2  disabled:opacity-50"
           >
             <ChartBarStacked size={40} />
             <p className="text-lg text-center">Créer un catégorie</p>
@@ -53,15 +53,15 @@ export function CreactCategorier() {
           </DrawerHeader>
           <ProfileForm />
           <div className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
-                      <p>falar</p>
-                      <Image
-                        src={images.LogoFalarohy}
-                        width={200}
-                        height={200}
-                        className="w-3 h-3"
-                        alt={"LogoFalarohy"} />
-                      <p>hy</p>
-                    </div>
+            <p>falar</p>
+            <Image
+              src={images.LogoFalarohy}
+              width={200}
+              height={200}
+              className="w-3 h-3"
+              alt={"LogoFalarohy"} />
+            <p>hy</p>
+          </div>
         </DialogContent>
       </Dialog>
     )
@@ -80,7 +80,7 @@ export function CreactCategorier() {
       <DrawerContent className="flex flex-col items-center ">
         <DrawerHeader>
           <DrawerTitle className="outfit text-center">Crée un nouvelle catégorie</DrawerTitle>
-          <DrawerDescription className="outfit">
+          <DrawerDescription className="outfit text-center">
             remarquer si tu crée un nouvelle catégorie cette catégorie sera visible par tous
           </DrawerDescription>
         </DrawerHeader>
@@ -91,15 +91,15 @@ export function CreactCategorier() {
           </DrawerClose>
         </DrawerFooter>
         <div className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
-                      <p>falar</p>
-                      <Image
-                        src={images.LogoFalarohy}
-                        width={200}
-                        height={200}
-                        className="w-3 h-3"
-                        alt={"LogoFalarohy"} />
-                      <p>hy</p>
-                    </div>
+          <p>falar</p>
+          <Image
+            src={images.LogoFalarohy}
+            width={200}
+            height={200}
+            className="w-3 h-3"
+            alt={"LogoFalarohy"} />
+          <p>hy</p>
+        </div>
       </DrawerContent>
     </Drawer>
   )
