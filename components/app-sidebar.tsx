@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useSession } from "next-auth/react"
 import { images } from "@/constants/images"
-import  {Data}  from "@/constants/dashMenu"
+import { Data, DataStudent } from "@/constants/dashMenu"
 import { user } from "@/types/user"
 import { Icons } from "@/constants/icons"
 import Image from "next/image"
@@ -25,13 +25,13 @@ import Image from "next/image"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
-const { data: session, status } = useSession()
+  const { data: session, status } = useSession()
 
- const userInfo: user = {
+  const userInfo: user = {
     name: `${session?.user?.name}`,
     email: `${session?.user?.email}`,
     role: `${session?.user?.role}`,
-    avatar: `${session?.user?.image ? session?.user?.image : Icons.userdefault } `,
+    avatar: `${session?.user?.image ? session?.user?.image : Icons.userdefault} `,
   }
 
   return (
@@ -58,7 +58,30 @@ const { data: session, status } = useSession()
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {
+
+        {(() => {
+          if (session?.user?.role === "teacher") {
+            return (
+              <div>
+                <NavMain items={Data.navMain} />
+                <NavDocuments items={Data.documents} />
+                <NavSecondary items={Data.navSecondary} className="mt-auto" />
+              </div>
+            );
+          }
+          else if (session?.user?.role === "student") {
+            return (
+              <div>
+                <NavMain items={DataStudent.navMain} />
+                <NavDocuments items={DataStudent.documents} />
+                <NavSecondary items={DataStudent.navSecondary} className="mt-auto" />
+              </div>
+            );
+          } else {
+            return session?.user.role
+          }
+        })()}
+        {/* {
           session?.user?.role === "teacher" ? (
             <div>
               <NavMain items={Data.navMain} />
@@ -67,8 +90,8 @@ const { data: session, status } = useSession()
             </div>
           ) : (
             session?.user?.role
-          )
-        }
+          ) 
+        } */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={userInfo} />

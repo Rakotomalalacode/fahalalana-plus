@@ -128,7 +128,7 @@ export function ProfileForm({ className }: React.ComponentProps<"form">) {
 
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Erreur inconnue")
-      alert(nom)
+      
       setMessage("Catégorie créée avec succès 🎉")
       setNom("")
     } catch (err: any) {

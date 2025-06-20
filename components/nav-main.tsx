@@ -1,4 +1,4 @@
-import { useSidebar } from "@/components/teacher/SidebarContext"
+import { useSidebar } from "@/components/context/SidebarContext"
 import {
   SidebarGroup,
   SidebarGroupContent,

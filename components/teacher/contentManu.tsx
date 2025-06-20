@@ -4,7 +4,7 @@ import Analytics from "./Analytics"
 import CoursPages from "./CoursPages"
 import Dashboard from "./Dashboard"
 import Equipe from "./Equipe"
-import { useSidebar } from "./SidebarContext"
+import { useSidebar } from "../context/SidebarContext"
 
 export function ContentManu() {
   const { currentMenu } = useSidebar()

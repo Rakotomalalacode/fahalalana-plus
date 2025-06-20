@@ -5,6 +5,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 import {
   Dialog,
   DialogContent,
@@ -162,7 +163,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
   return (
     <form className={cn(" w-full  outfit", className)}>
-      <ScrollArea className=" h-[65vh] lg:h-auto  items-start space-y-6 w-full ">
+      <ScrollArea className=" h-[65vh] lg:h-auto  items-start space-y-6 mx-2 w-full ">
         <div className="w-full flex flex-wrap-reverse justify-between lg:flex-wrap items-center gap-6 ">
           <div className="lg:w-[40%] w-full ">
             <div className="flex flex-col gap-2 w-full h-[200px]">
@@ -277,9 +278,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
           </div>
         </div>
         <div className="grid gap-3 mt-6 pb-7 lg:pb-0">
-          <div className="grid gap-3">
-            <Label htmlFor="username">Description du cours</Label>
-            <Input id="username" className="rounded" placeholder="Entre la description de votre cours" />
+          <div className="grid w-full gap-3">
+            <Label htmlFor="message">Description du cours</Label>
+            <Textarea placeholder="Entre la description de votre cours" id="message" className="rounded w-[99.5%] min-h-20 m-auto" />
           </div>
           <Button className="rounded w-full" type="submit">Valide le cours</Button>
         </div>

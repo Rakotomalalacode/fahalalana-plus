@@ -5,7 +5,7 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { SidebarProviderCustom } from "../../../components/teacher/SidebarContext"
+import { SidebarProviderCustom } from "../../../components/context/SidebarContext"
 import { ContentManu } from "../../../components/teacher/contentManu"
 
 

@@ -1,5 +1,7 @@
+import Decouvrir from '@/components/Decouvrir/Decouvrir'
+import NavbarOne from '@/components/headers/NavbarOne'
 import type { Metadata } from 'next'
- 
+
 export const metadata: Metadata = {
   title: 'Falarohy',
   description: 'leargning your way',
@@ -11,8 +13,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-  <main>
-    {children}
-  </main>
+    <main>
+      <div className="w-full lg:sticky lg:top-0">
+        <NavbarOne />
+      </div>
+      <div className="w-[95%] m-auto rounded sticky top-3 bg-primary-foreground mt-2 px-4 lg:hidden block">
+        <Decouvrir />
+      </div>
+
+      <div className="mt-3">
+        {children}
+      </div>
+    </main>
   )
 }

@@ -9,6 +9,8 @@ import {
   IconReport,
   IconSearch,
   IconUsers,
+  IconSchool,
+  IconBrandZoom,
 } from "@tabler/icons-react"
 
 export const Data = {
@@ -38,6 +40,68 @@ export const Data = {
       title: "Équipe",
       key: "equipe",
       icon: IconUsers,
+    },
+  ],
+  navSecondary: [
+    // {
+    //   title: "Paramètres",
+    //   url: "#",
+    //   icon: IconSettings,
+    // },
+    {
+      title: "Obtenir de l'aide",
+      url: "#",
+      icon: IconHelp,
+    },
+    {
+      title: "Recherche",
+      url: "#",
+      icon: IconSearch,
+    },
+  ],
+  documents: [
+    // {
+    //   name: "Data Library",
+    //   url: "#",
+    //   icon: IconDatabase,
+    // },
+    {
+      name: "Rapports",
+      url: "#",
+      icon: IconReport,
+    },
+    {
+      name: "Assistant de mots",
+      url: "#",
+      icon: IconFileWord,
+    },
+  ],
+}
+
+
+
+export const DataStudent = {
+  navMain: [
+    {
+      title: "Dashboard",
+      key: "dashboard",
+      url: "t/dash",
+      icon: IconDashboard,
+    },
+    {
+      title: "Formations",
+      key: "formations",
+      icon: IconSchool,
+    },
+    {
+      title: "Analytics",
+      key: "analytics",
+      icon: IconChartBar,
+    },
+    {
+      title: "Cours",
+      key: "cours",
+      icon: IconBrandZoom,
     },
   ],
   navSecondary: [

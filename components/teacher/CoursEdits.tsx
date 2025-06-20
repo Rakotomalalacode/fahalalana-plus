@@ -33,6 +33,8 @@ import { SidebarMenuAction, useSidebar } from "../ui/sidebar"
 import { IconDots, IconFolder, IconShare3 } from "@tabler/icons-react"
 import { DelletCours } from "./DelletCours"
 import AddSoutitre from "./AddSoutitre"
+import { Label } from "../ui/label"
+import { Textarea } from "../ui/textarea"
 
 const CoursEdits = () => {
     const maxSizeMB = 2
@@ -263,18 +265,9 @@ const CoursEdits = () => {
                                             )}
                                         </div>
                                         <div className="w-full h-full">
-                                            <div className="space-y-2">
-                                                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                                                    Changer le description
-                                                </label>
-                                                <input
-                                                    id="prixchanger"
-                                                    name="prixchanger"
-                                                    type="text"
-                                                    placeholder="Entre votre nouvell prix"
-                                                    required
-                                                    className="mt-1 block w-full px-3 py-1.5 placeholder:text-sm border border-gray-300 rounded  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                                />
+                                            <div className="grid w-full gap-3">
+                                                <Label htmlFor="message">Description du cours</Label>
+                                                <Textarea placeholder="Entre la description de votre cours" id="message" className="rounded w-[99.5%] min-h-20 m-auto" />
                                             </div>
                                         </div>
                                         <button

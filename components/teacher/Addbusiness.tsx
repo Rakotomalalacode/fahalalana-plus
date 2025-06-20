@@ -33,6 +33,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { ScrollArea } from "../ui/scroll-area"
 import Image from "next/image"
 import { images } from "@/constants/images"
+import { Textarea } from "../ui/textarea"
 
 // const initialFiles = [
 //     {
@@ -249,8 +250,8 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     </div>
                 </div>
                 <div className="mt-6 w-full flex flex-col gap-3.5">
-                    <Label htmlFor="username">Description du cours</Label>
-                    <Input id="username" className="rounded" placeholder="Entre votre description du cours" />
+                    <Label htmlFor="message">Description du cours</Label>
+                    <Textarea placeholder="Entre la description de votre cours" id="message" className="rounded w-[99.5%] min-h-20 m-auto" />
                 </div>
                 <Button className="rounded mt-6 w-full mb-6 lg:mb-0" type="submit">Valide le business</Button>
             </ScrollArea>
