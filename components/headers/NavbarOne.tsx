@@ -27,8 +27,8 @@ const NavbarOne = () => {
                         <SearchBar />
                     </div>
                     <div className="flex gap-12">
-                        <Link href="/formation" className="mt-2 hover:underline" >Formations</Link>
-                        <Link href="/bibliotheque" className="mt-2 hover:underline" >Biblioteque</Link>
+                        <Link href="/formation" className="mt-2 hover:underline hover:text-orangeme" >Formations</Link>
+                        <Link href="/bibliotheque" className="mt-2 hover:underline hover:text-orangeme" >Biblioteque</Link>
                         <Link href="/auth/signin"
                             className="bg-orangeme/90 hover:bg-orangeme rounded text-white px-6 h-9 flex flex-col justify-center items-centre"
                         ><p>Se connecter </p></Link>
@@ -54,9 +54,9 @@ const NavbarOne = () => {
                                 </SheetTitle>
                             </SheetHeader>
                             <SheetDescription className="flex h-[50%] flex-col justify-center items-center gap-12">
-                                <Link href="/formation" className="mt-2 hover:underline text-xl text-black" >Formations</Link>
-                                <Link href="/bibliotheque" className="mt-2 hover:underline text-xl text-black" >Bibliothèque</Link>
-                                <Link href="/auth/signin" className="mt-2 hover:underline text-xl text-black" >Se connecter</Link>
+                                <Link href="/formation" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Formations</Link>
+                                <Link href="/bibliotheque" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Bibliothèque</Link>
+                                <Link href="/auth/signin" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Se connecter</Link>
                             </SheetDescription>
                         </SheetContent>
                     </Sheet>

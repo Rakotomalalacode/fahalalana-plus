@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconLogout, type Icon } from "@tabler/icons-react"
+import { IconLogout, IconSearch, type Icon } from "@tabler/icons-react"
 
 import {
   SidebarGroup,
@@ -12,6 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { SignOutButton } from "./sign-out-button"
+import SearchDash from "./search/SearchDash"
 
 export function NavSecondary({
   items,
@@ -31,19 +32,27 @@ export function NavSecondary({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>
+                <a href={item.url}
+                target="_blank"
+                >
                   <item.icon />
                   <span>{item.title}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
-    <SidebarMenuItem >
-      <SidebarMenuButton>
-        <IconLogout />
-           <SignOutButton />
-           </SidebarMenuButton>
- </SidebarMenuItem >
+          <SidebarMenuItem >
+            <SidebarMenuButton>
+              <IconLogout />
+              <SignOutButton />
+            </SidebarMenuButton>
+          </SidebarMenuItem >
+          <SidebarMenuItem >
+            <SidebarMenuButton>
+              <IconSearch />
+              <SearchDash />
+            </SidebarMenuButton>
+          </SidebarMenuItem >
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
