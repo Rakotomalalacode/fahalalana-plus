@@ -2,14 +2,14 @@
 import { images } from "@/constants/images"
 import Image from "next/image"
 
-const ApprenezEff = () => {
+const ApprenezEff = ({background} : {background : string}) => {
     return (
         <div>
-            <div className="w-full h-52 flex justify-between pr-4 rounded-lg bg-green-700 shadow">
+            <div className={`w-full h-52 flex justify-between pr-4 rounded-lg  shadow-md ${background ? background : "bg-green-700"}`}>
                 <div className="p-4 flex flex-col justify-between">
                     <div className="space-y-2">
                         <h1 className="text-white text-xl lg:text-3xl">Apprenez efficacement avec nous !</h1>
-                        <p className="text-gray-200">Bienvenue sur <span className="outfit">Falarohy</span></p>
+                        <p className="text-gray-200">Bienvenue sur <span className="qualyneue">Falarohy</span></p>
                     </div>
                     <div className="flex gap-6 lg:gap-16">
                         <div className="flex  items-center gap-3 text-white">

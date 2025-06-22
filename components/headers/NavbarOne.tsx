@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import LogoFalarohy from "../logo"
 import SearchBar from "../search/page"
@@ -13,8 +15,10 @@ import { IconMenuDeep } from "@tabler/icons-react"
 import { images } from "@/constants/images"
 import Image from "next/image"
 import Decouvrir from "../Decouvrir/Decouvrir"
+import { useRouter } from "next/navigation"
 
 const NavbarOne = () => {
+    const route = useRouter()
     return (
         <div className="w-screen lg:backdrop-blur-sm px-4 lg:px-9 py-5 lg:bg-transparent bg-primary-foreground">
             <div className="w-full flex justify-between">
@@ -29,9 +33,11 @@ const NavbarOne = () => {
                     <div className="flex gap-12">
                         <Link href="/formation" className="mt-2 hover:underline hover:text-orangeme" >Formations</Link>
                         <Link href="/bibliotheque" className="mt-2 hover:underline hover:text-orangeme" >Biblioteque</Link>
-                        <Link href="/auth/signin"
-                            className="bg-orangeme/90 hover:bg-orangeme rounded text-white px-6 h-9 flex flex-col justify-center items-centre"
-                        ><p>Se connecter </p></Link>
+                        <button 
+                            onClick={() => route.push("/auth/signin")}
+                           // className="group cursor-pointer relative w-full flex justify-center py-2 px-5 items-center border border-transparent text-sm font-medium rounded text-white bg-orangeme/90 hover:bg-orangeme h-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orangeme-500 "
+                        className="group relative w-full flex justify-center h-9 items-center py-2 px-5 border border-transparent text-sm font-medium rounded text-white bg-orangeme/90 hover:bg-orangeme focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orangeme/80 disabled:opacity-50"
+                        ><p>Se connecter </p></button>
                     </div>
                 </div>
                 <div className="lg:hidden flex items-center">
@@ -62,7 +68,7 @@ const NavbarOne = () => {
                     </Sheet>
                 </div>
             </div>
-            
+
         </div>
     )
 }

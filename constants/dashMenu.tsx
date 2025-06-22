@@ -50,7 +50,7 @@ export const Data = {
     // },
     {
       title: "Obtenir de l'aide",
-      url: "#",
+      url: "/obtenir-de-l-aide",
       icon: IconHelp,
     },
     {
@@ -69,11 +69,13 @@ export const Data = {
       name: "Rapports",
       url: "#",
       icon: IconReport,
+      key: "rapports",
     },
     {
       name: "Assistant de mots",
       url: "#",
       icon: IconFileWord,
+      key: "dashboard",
     },
   ],
 }
@@ -131,11 +133,13 @@ export const DataStudent = {
       name: "Rapports",
       url: "#",
       icon: IconReport,
+      key: "rapports",
     },
     {
       name: "Assistant de mots",
       url: "#",
       icon: IconFileWord,
+      key: "dashboard",
     },
   ],
 }

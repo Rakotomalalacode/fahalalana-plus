@@ -119,7 +119,7 @@ export default AddCours
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
   const maxSizeMB = 5
-  const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
+  const maxSize = maxSizeMB * 1024 * 1024 
 
   const [
     { files, isDragging, errors },
@@ -139,7 +139,6 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
   const previewUrl = files[0]?.preview || null
 
-  //////
 
   const [categories, setCategories] = useState<Categorie[]>([])
   const [loading, setLoading] = useState(true)
@@ -264,9 +263,6 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     </ul>
                   )}
 
-                  {/* <SelectItem className="rounded" value="light">Light</SelectItem>
-                  <SelectItem className="rounded" value="dark">Dark</SelectItem>
-                  <SelectItem className="rounded" value="system">System</SelectItem> */}
                 </SelectContent>
               </Select>
             </div>

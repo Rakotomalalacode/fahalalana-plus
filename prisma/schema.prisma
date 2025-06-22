@@ -53,6 +53,7 @@ model User {
 
   accounts Account[]
   sessions Session[]
+  reports   Report[]
 }
 
 model VerificationToken {
@@ -68,4 +69,14 @@ model Categorie {
   nom       String
   usercreat String?
   createdAt DateTime @default(now())
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
