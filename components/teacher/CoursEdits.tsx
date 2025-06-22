@@ -24,19 +24,44 @@ import {
 } from "@/components/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { images } from "@/constants/images"
 import { SquarePen, X, AlertCircleIcon, ImageIcon, UploadIcon, XIcon, Settings } from "lucide-react"
 import Image from "next/image"
 import { useFileUpload } from "@/hooks/use-file-upload"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
-import { SidebarMenuAction, useSidebar } from "../ui/sidebar"
-import { IconDots, IconFolder, IconShare3 } from "@tabler/icons-react"
-import { DelletCours } from "./DelletCours"
+import { useSidebar } from "../ui/sidebar"
 import AddSoutitre from "./AddSoutitre"
 import { Label } from "../ui/label"
 import { Textarea } from "../ui/textarea"
+import { useState } from "react"
+import { toast } from "sonner"
+import { IconCircleDashedCheck, IconError404 } from "@tabler/icons-react"
 
-const CoursEdits = () => {
+
+type Cours = {
+    cours: {
+        id: string
+        titre: string
+        prix: number
+        description: string
+        imageUrl: string
+        publicId: string
+        categorie: string
+        createdAt: string
+        user: {
+            name: string | null
+            email: string
+            image: string | null
+        }
+    }
+}
+
+
+const CoursEdits = ({ cours }: Cours) => {
+    const [titre, setTitre] = useState(cours.titre)
+    const [prix, setPrix] = useState(String(cours.prix))
+    const [description, setDescription] = useState(cours.description)
+
+
+
     const maxSizeMB = 2
     const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
     const maxFiles = 6
@@ -62,6 +87,37 @@ const CoursEdits = () => {
     const fileName = files[0]?.file.name || null
     const { isMobile } = useSidebar()
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        const formData = new FormData()
+        formData.append("titre", titre)
+        formData.append("prix", prix)
+        formData.append("description", description)
+
+        if (files.length > 0 && files[0].file) {
+            formData.append("image", files[0].file as File)
+        }
+
+        const res = await fetch(`/api/cours/${cours.id}`, {
+            method: "PUT",
+            body: formData,
+        })
+
+        if (res.ok) {
+          //  alert("Cours modifié avec succès !")
+            toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Cours modifié avec succès !</div>)
+            setTitre("")
+            setPrix("")
+            setDescription("")
+        } else {
+            const error = await res.json()
+            //alert("Erreur: " + error.message)
+            toast(<div className="text-red-700 font-outfit text-sm flex gap-2 items-center"><IconError404 /> error.message !</div>)
+        }
+    }
+
+
     return (
         <Drawer>
             <DrawerTrigger>
@@ -73,7 +129,7 @@ const CoursEdits = () => {
 
                 <DrawerHeader>
                     <div className="w-full flex justify-between">
-                        <DrawerTitle className="outfit">Modification du cours de Titre de cours</DrawerTitle>
+                        <DrawerTitle className="outfit">Modification du cours de {cours.titre}</DrawerTitle>
                         <DrawerClose>
                             <X className="hover:text-red-600" />
                         </DrawerClose>
@@ -83,35 +139,12 @@ const CoursEdits = () => {
                     <div className="flex gap-7 lg:gap-0 flex-wrap justify-between w-full h-full">
                         <ScrollArea className="shadow m-1 p-4 rounded-lg lg:w-[45%] w-full h-[64vh]">
                             <div className="flex flex-wrap w-full gap-6">
-                                {/* <div className="w-fit flex justify-center items-center absolute right-0 mr-6 mt-1.5 lg:mt-0">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <SidebarMenuAction className="shadow bg-background p-1 w-8 h-8 flex justify-center items-center rounded-full">
-                                                <Settings />
-                                            </SidebarMenuAction>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent
-                                            className="w-24 rounded"
-                                            side={isMobile ? "bottom" : "right"}
-                                            align={isMobile ? "end" : "start"}
-                                        >
-                                            <DropdownMenuItem className="rounded">
-                                                <IconFolder />
-                                                <span>Open</span>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem className="rounded">
-                                                <DelletCours />
-                                            </DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </div> */}
-                                <Image src={images.LangagePython} width={500} height={500} className="lg:w-64 lg:h-32 rounded-md w-full h-48" alt={"LogoFalarohy"} />
+                                <Image src={cours.imageUrl} width={500} height={500} className="lg:w-64 lg:h-32 rounded-md w-full h-48" alt={cours.titre} />
                                 <div className="space-y-3">
-                                    <p className="text-xl flex"><span className="block lg:hidden mr-2">Titre : </span> Titre du cours</p>
+                                    <p className="text-xl flex"><span className="block lg:hidden mr-2">Titre : </span> {cours.titre}</p>
                                     <div className="space-y-1">
-                                        <p className="text-gray-600 flex"><span className="block lg:hidden mr-2">Prix :</span>0000 Ar</p>
-                                        <p className="text-gray-600 flex"><span className="block lg:hidden mr-2">Date :</span>12 / 02 / 2025</p>
+                                        <p className="text-gray-600 flex"><span className="block lg:hidden mr-2">Prix :</span>{cours.prix} Ar</p>
+                                        <p className="text-gray-600 flex"><span className="block lg:hidden mr-2">Date :</span>{cours.createdAt.slice(0, 10)}</p>
                                         <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
                                             <Avatar>
                                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -135,8 +168,8 @@ const CoursEdits = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <DrawerDescription >
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dignissimos earum dolores tenetur corporis dolorem aliquam doloribus officiis minus maxime beatae ullam possimus eveniet rem repellat et, reprehenderit illum quibusdam.
+                                <DrawerDescription className="h-[60px] overflow-hidden text-ellipsis" >
+                                    {cours.description}
                                 </DrawerDescription>
                                 <Accordion type="single" collapsible>
                                     <AccordionItem value="item-1">
@@ -156,7 +189,7 @@ const CoursEdits = () => {
                                     <TabsTrigger className="rounded" value="soutitre">Plus de soutitre</TabsTrigger>
                                 </TabsList>
                                 <TabsContent value="modif">
-                                    <form action="" className="w-full space-y-4 h-full pb-4" >
+                                    <form onSubmit={handleSubmit} className="w-full space-y-4 h-full pb-4" >
                                         <div className="w-full h-full">
                                             <div className="space-y-2">
                                                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -166,6 +199,8 @@ const CoursEdits = () => {
                                                     id="titrechanger"
                                                     name="titrechanger"
                                                     type="text"
+                                                    value={titre}
+                                                    onChange={(e) => setTitre(e.target.value)}
                                                     placeholder="Entre votre nouvell titre"
                                                     required
                                                     className="mt-1 block w-full px-3 py-1.5 placeholder:text-sm border border-gray-300 rounded  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
@@ -180,7 +215,9 @@ const CoursEdits = () => {
                                                 <input
                                                     id="prixchanger"
                                                     name="prixchanger"
-                                                    type="text"
+                                                    type="number"
+                                                    value={prix}
+                                                    onChange={(e) => setPrix(e.target.value)}
                                                     placeholder="Entre votre nouvell prix"
                                                     required
                                                     className="mt-1 block w-full px-3 py-1.5 placeholder:text-sm border border-gray-300 rounded  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
@@ -267,7 +304,11 @@ const CoursEdits = () => {
                                         <div className="w-full h-full">
                                             <div className="grid w-full gap-3">
                                                 <Label htmlFor="message">Description du cours</Label>
-                                                <Textarea placeholder="Entre la description de votre cours" id="message" className="rounded w-[99.5%] min-h-20 m-auto" />
+                                                <Textarea placeholder="Entre la description de votre cours"
+                                                    id="description"
+                                                    value={description}
+                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    className="rounded w-[99.5%] min-h-20 m-auto" />
                                             </div>
                                         </div>
                                         <button

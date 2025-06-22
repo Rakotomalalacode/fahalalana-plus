@@ -5,6 +5,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
 import {
   Dialog,
   DialogContent,
@@ -27,7 +28,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { IconTrash } from '@tabler/icons-react';
 
-export function DelletCours() {
+export function DelletCours({cours , name}: {cours: string , name: string}) {
   const [open, setOpen] = React.useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
@@ -44,7 +45,7 @@ export function DelletCours() {
              Ce cours sera définitivement supprimé. Cette action est irréversible.
             </DialogDescription>
           </DialogHeader>
-          <ProfileForm />
+          <ProfileForm name={name} cours={cours} />
         </DialogContent>
       </Dialog>
     )
@@ -62,7 +63,7 @@ export function DelletCours() {
             Ce cours sera définitivement supprimé. Cette action est irréversible.
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        <ProfileForm name={name} cours={cours} className="px-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" className="rounded">Annuler</Button>
@@ -72,15 +73,41 @@ export function DelletCours() {
     </Drawer>
   )
 }
+type ProfileFormProps = React.ComponentProps<"form"> & {
+  cours: string,
+  name: string
+}
 
-function ProfileForm({ className }: React.ComponentProps<"form">) {
+function ProfileForm({ className, cours, name }: ProfileFormProps) {
+const [validedellet, setValidedellet] = useState("")
+const [reports, setReports] = useState([])
+  const fetchReports = async () => {
+    const res = await fetch("/api/rapports")
+    const data = await res.json()
+    setReports(data)
+  }
+  async function handleDelete(cours: string, name: string) {
+    const condition = `sudo delete cours ${name}`
+    alert(`sudo delete cours ${name}`)
+    if (condition === cours) {
+      await fetch(`/api/cours/${cours}`, {
+        method: "DELETE",
+      })
+      alert("Cours supprimé avec succès !")
+      fetchReports()
+    }
+  }
+  
   return (
     <form className={cn("grid items-start gap-6", className)}>
       <div className="grid gap-3">
-        <Label htmlFor="username" className="text-sm"><p>Tapez <span className="text-destructive">sudo delete cours Titre de cours</span> pour confirmer la suppression de tout.</p></Label>
-        <Input id="username" className="rounded text-red-500"/>
+        <p className="text-sm">Tapez <span className="text-destructive">sudo delete cours {name}</span> pour confirmer la suppression de tout.</p>
+        <Input 
+        value={validedellet}
+                onChange={(e) => setValidedellet(e.target.value)}
+        id="username" className="rounded text-red-500"/>
       </div>
-      <Button type="submit" variant={"destructive"} className="rounded">Supprimer le cours</Button>
+      <p onClick={() => handleDelete(cours, name)}  className="rounded">Supprimer le cours</p>
     </form>
   )
 }
