@@ -1,12 +1,16 @@
+"use client"
+
 import {
     formatBytes,
     useFileUpload
 } from '@/hooks/use-file-upload'
-import { AlertCircleIcon, FileVideo, ImageIcon, UploadIcon, XIcon } from 'lucide-react'
+import { AlertCircleIcon, FileVideo, UploadIcon, XIcon } from 'lucide-react'
 import { Button } from '../ui/button'
-import { Icons } from '@/constants/icons'
 import Image from 'next/image'
 import { images } from '@/constants/images'
+import { useState } from 'react'
+import { toast } from "sonner"
+import { IconCircleDashedCheck } from '@tabler/icons-react'
 
 // const initialFiles = [
 //     {
@@ -31,7 +35,8 @@ import { images } from '@/constants/images'
 //         id: "image-03-123456789",
 //     },
 // ]
-const AddSoutitre = () => {
+const AddSoutitre = ({ coursId }: { coursId: string }) => {
+    const [sousTitre, setSousTitre] = useState("")
     const maxSizeMB = 2048
     const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
     const maxFiles = 6
@@ -56,8 +61,35 @@ const AddSoutitre = () => {
     })
     const previewUrl = files[0]?.preview || null
     const fileName = files[0]?.file.name || null
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        if (!files[0] || !coursId) return
+
+        const formData = new FormData()
+        formData.append("titrechanger", sousTitre)
+        formData.append("coursId", coursId)
+        formData.append("file", files[0].file as File) // fichier vidéo
+
+        const res = await fetch("/api/soustitres", {
+            method: "POST",
+            body: formData,
+        })
+
+        const data = await res.json()
+        if (res.ok) {
+            //alert("Sous-titre ajouté !")
+            toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Cours ajouté avec succès !</div>)
+            clearFiles()
+            setSousTitre("")
+        } else {
+            console.error("Erreur :", data.error)
+        }
+    }
+
+
     return (
-        <form action="" className="w-full space-y-4 h-full pb-4" >
+        <form onSubmit={handleSubmit} className="w-full space-y-4 h-full pb-4" >
             <div className="w-full h-full">
                 <div className="space-y-2">
                     <label htmlFor="soutitre" className="block text-sm font-medium text-gray-700">
@@ -65,7 +97,9 @@ const AddSoutitre = () => {
                     </label>
                     <input
                         id="soutitrechanger"
-                        name="soutitrechanger"
+                        name="sousTitrechanger"
+                        value={sousTitre}
+                        onChange={(e) => setSousTitre(e.target.value)}
                         type="text"
                         placeholder="Entre votre nouvell soutitre"
                         required

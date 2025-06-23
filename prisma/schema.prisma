@@ -93,4 +93,15 @@ model Cours {
   user        User     @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime @default(now())
+   sousTitres  SousTitre[]
+}
+
+model SousTitre {
+  id         String   @id @default(uuid())
+  titre      String
+  videoUrl   String
+  publicId   String
+  coursId    String
+  createdAt  DateTime @default(now())
+  cours      Cours    @relation(fields: [coursId], references: [id])
 }

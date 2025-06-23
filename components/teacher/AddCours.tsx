@@ -36,14 +36,12 @@ import { Label } from "@/components/ui/label"
 import { ChartBarStacked, FolderPlus, X } from "lucide-react"
 import { ScrollArea } from "../ui/scroll-area"
 import { AlertCircleIcon, ImageUpIcon, XIcon } from "lucide-react"
-
+import { toast } from "sonner"
 import { useFileUpload } from "@/hooks/use-file-upload"
 import Image from "next/image"
 import { images } from "@/constants/images"
-
-//////
-
 import { useEffect, useState } from "react"
+import { IconCircleDashedCheck } from "@tabler/icons-react"
 
 type Categorie = {
   id: number
@@ -188,14 +186,14 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       const result = await res.json()
 
       if (!res.ok) throw new Error(result.error)
-         if (res.ok) {
-    setTitre("")
-    setDescription("")
-    setCategorie("")
-    setPrix("")
-   removeFile(files[0]?.id)
- // ou utiliser removeFile() de ta lib
-  }
+      if (res.ok) {
+        toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Cours ajouté avec succès !</div>)
+        setTitre("")
+        setDescription("")
+        setCategorie("")
+        setPrix("")
+        removeFile(files[0]?.id)
+      }
     } catch (err: any) {
       alert("Erreur : " + err.message)
     } finally {
@@ -280,9 +278,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
             <div className="grid gap-3">
               <Label htmlFor="titre">Titre du cours</Label>
               <Input id="username" className="rounded"
-              value={titre}
+                value={titre}
                 onChange={(e) => setTitre(e.target.value)}
-              placeholder="Entre votre nouvelle titre" />
+                placeholder="Entre votre nouvelle titre" />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="categorie">Categorie du cours</Label>
@@ -315,9 +313,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
             <div className="grid gap-3">
               <Label htmlFor="prix">Prix d' apprentisage</Label>
               <Input id="prix" type="number"
-               value={prix}
+                value={prix}
                 onChange={(e) => setPrix(e.target.value)}
-              className="rounded" placeholder="Entre votre prix" />
+                className="rounded" placeholder="Entre votre prix" />
             </div>
 
           </div>
@@ -326,14 +324,14 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
           <div className="grid w-full gap-3">
             <Label htmlFor="description">Description du cours</Label>
             <Textarea placeholder="Entre la description de votre cours" id="description"
-            value={description}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
 
-            className="rounded w-[99.5%] min-h-20 m-auto" />
+              className="rounded w-[99.5%] min-h-20 m-auto" />
           </div>
-          <Button className="rounded w-full" type="submit"  disabled={submitting}>
+          <Button className="rounded w-full" type="submit" disabled={submitting}>
             {submitting ? "Ajout en cours..." : "Valider le cours"}
-            </Button>
+          </Button>
         </div>
       </ScrollArea>
     </form>

@@ -13,9 +13,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
-import { images } from "@/constants/images"
 import CoursEdits from "./CoursEdits"
-import { DelletCours } from './DelletCours';
 import {
   Dialog,
   DialogClose,
@@ -149,35 +147,6 @@ export function ListeCours() {
                         </div>
                       </DialogContent>
                     </Dialog>
-
-
-                    {/* <Button
-                      variant="destructive"
-                      onClick={async () => {
-                        const confirmed = confirm("Supprimer ce cours ?")
-                        if (!confirmed) return
-
-                        try {
-                          const res = await fetch(`/api/cours/${cours.id}`, {
-                            method: "DELETE",
-                          })
-
-                          if (res.ok) {
-                            // Recharge les cours après suppression
-                            setCours((prev) => prev.filter((c) => c.id !== cours.id))
-                          } else {
-                            const data = await res.json()
-                            alert(data.error || "Échec de la suppression")
-                          }
-                        } catch (err) {
-                          alert("Erreur réseau")
-                        }
-                      }}
-                    >
-                      Supprimer
-                    </Button> */}
-                    {/* <DelletCours  cours={cours.id} /> 
-                  <DelletCours name={cours.titre} cours={cours.id} />*/}
                   </div>
                 </div>
               </div>

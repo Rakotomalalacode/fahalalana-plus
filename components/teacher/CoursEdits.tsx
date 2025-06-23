@@ -24,16 +24,17 @@ import {
 } from "@/components/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { SquarePen, X, AlertCircleIcon, ImageIcon, UploadIcon, XIcon, Settings } from "lucide-react"
+import { SquarePen, X, AlertCircleIcon, ImageIcon, UploadIcon, XIcon, Loader2 } from "lucide-react"
 import Image from "next/image"
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { useSidebar } from "../ui/sidebar"
 import AddSoutitre from "./AddSoutitre"
 import { Label } from "../ui/label"
 import { Textarea } from "../ui/textarea"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
-import { IconCircleDashedCheck, IconError404 } from "@tabler/icons-react"
+import { IconCircleDashedCheck, IconError404, IconTrash } from "@tabler/icons-react"
+import ReactPlayer from 'react-player';
 
 
 type Cours = {
@@ -53,15 +54,25 @@ type Cours = {
         }
     }
 }
-
+type Soutitre = {
+    id: string
+    titre: string
+    videoUrl: string
+    publicId: string
+    coursId: string
+    createdAt: string
+    cours: {
+        id: string
+        titre: string
+        imageUrl: string
+        publicId: string
+    }
+}
 
 const CoursEdits = ({ cours }: Cours) => {
     const [titre, setTitre] = useState(cours.titre)
     const [prix, setPrix] = useState(String(cours.prix))
     const [description, setDescription] = useState(cours.description)
-
-
-
     const maxSizeMB = 2
     const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
     const maxFiles = 6
@@ -105,7 +116,7 @@ const CoursEdits = ({ cours }: Cours) => {
         })
 
         if (res.ok) {
-          //  alert("Cours modifié avec succès !")
+            //  alert("Cours modifié avec succès !")
             toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Cours modifié avec succès !</div>)
             setTitre("")
             setPrix("")
@@ -113,10 +124,52 @@ const CoursEdits = ({ cours }: Cours) => {
         } else {
             const error = await res.json()
             //alert("Erreur: " + error.message)
-            toast(<div className="text-red-700 font-outfit text-sm flex gap-2 items-center"><IconError404 /> error.message !</div>)
+            toast(<div className="text-red-700 font-outfit text-sm flex gap-2 items-center"><IconError404 /> {error.message} !</div>)
         }
     }
 
+    const [soutitre, setSoutire] = useState<Soutitre[]>([])
+    const [loading, setLoading] = useState(true)
+
+
+    const fetchCours = async () => {
+        try {
+            const res = await fetch(`/api/soustitres/${cours.id}`)
+            const data = await res.json()
+            setSoutire(data)
+        } catch (error) {
+            console.error("Erreur chargement des cours:", error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
+
+    const handleDelete = async (coursId: string) => {
+        const res = await fetch(`/api/soustitres/${coursId}`, {
+            method: "DELETE",
+        })
+
+        if (res.ok) {
+            //  alert("Sous-titre supprimé !")
+            toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Sous-titre supprimé !</div>)
+        } else {
+            //alert("Erreur lors de la suppression")
+            toast(<div className="text-red-700 font-outfit text-sm flex gap-2 items-center"><IconError404 /> Erreur lors de la suppression</div>)
+        }
+
+    }
+    useEffect(() => {
+        fetchCours()
+    }, [])
+    if (loading) {
+        return (
+            <div className="flex w-ful h-full justify-center items-center">
+                <Loader2 className="animate-spin h-8 w-8 text-muted-foreground" />
+            </div>
+        )
+    }
 
     return (
         <Drawer>
@@ -171,13 +224,24 @@ const CoursEdits = ({ cours }: Cours) => {
                                 <DrawerDescription className="h-[60px] overflow-hidden text-ellipsis" >
                                     {cours.description}
                                 </DrawerDescription>
-                                <Accordion type="single" collapsible>
-                                    <AccordionItem value="item-1">
-                                        <AccordionTrigger>Soutitre du cours</AccordionTrigger>
-                                        <AccordionContent>
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio.
-                                        </AccordionContent>
-                                    </AccordionItem>
+                                <Accordion type="single" className="w-full" collapsible>
+                                    {soutitre.map((soutitre) => (
+                                        <AccordionItem key={soutitre.id} value="item-1" className="w-full">
+                                            <AccordionTrigger>{soutitre.titre}</AccordionTrigger>
+                                            <AccordionContent>
+                                                {/* {soutitre.videoUrl && <video controls className="w-full h-48 object-cover rounded" src={soutitre.videoUrl} />} */}
+                                                <ReactPlayer url={soutitre.videoUrl} controls width="100%" className="w-full h-48 object-cover rounded" height="192px" />
+                                            </AccordionContent>
+                                            <div className="flex justify-end">
+                                                <button
+                                                onClick={() => handleDelete(soutitre.id)}
+                                                className="bg-[#ff413a] px-2 py-2 rounded hover:bg-[#ff413a]/90"
+                                            >
+                                                <IconTrash size={15} className="text-white" />
+                                            </button>
+                                            </div>
+                                        </AccordionItem>
+                                    ))}
                                 </Accordion>
                             </div>
                         </ScrollArea>
@@ -320,7 +384,7 @@ const CoursEdits = ({ cours }: Cours) => {
                                     </form>
                                 </TabsContent>
                                 <TabsContent value="soutitre">
-                                    <AddSoutitre />
+                                    <AddSoutitre coursId={cours.id} />
                                 </TabsContent>
                             </Tabs>
 

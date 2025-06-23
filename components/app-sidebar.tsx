@@ -21,6 +21,7 @@ import { Data, DataStudent } from "@/constants/dashMenu"
 import { user } from "@/types/user"
 import { Icons } from "@/constants/icons"
 import Image from "next/image"
+import { Loader2 } from "lucide-react"
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -33,6 +34,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     role: `${session?.user?.role}`,
     avatar: `${session?.user?.image ? session?.user?.image : Icons.userdefault} `,
   }
+  const [loading, setLoading] = React.useState(true)
+
+
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -77,24 +81,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <NavSecondary items={DataStudent.navSecondary} className="mt-auto" />
               </div>
             );
+
+          } if (loading) {
+            return (
+              <div className="flex h-screen justify-center items-center">
+                <div className="animate-spin  flex justify-center items-center rounded-full h-24 w-24">
+                  <Image src={images.LogoFalarohy} width={200} height={200} alt={"LogoFalarohy"} />
+                </div>
+              </div>
+            )
           } else {
             return session?.user.role
           }
         })()}
-        {/* {
-          session?.user?.role === "teacher" ? (
-            <div>
-              <NavMain items={Data.navMain} />
-              <NavDocuments items={Data.documents} />
-              <NavSecondary items={Data.navSecondary} className="mt-auto" />
-            </div>
-          ) : (
-            session?.user?.role
-          ) 
-        } */}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={userInfo} />
+        {session?.user ? (
+          <NavUser user={userInfo} />
+        ) : (
+          <div></div>
+        )
+        }
       </SidebarFooter>
     </Sidebar>
   )

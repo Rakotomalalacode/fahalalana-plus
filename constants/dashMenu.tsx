@@ -53,11 +53,11 @@ export const Data = {
       url: "/obtenir-de-l-aide",
       icon: IconHelp,
     },
-    {
-      title: "Recherche",
-      url: "#",
-      icon: IconSearch,
-    },
+    // {
+    //   title: "Recherche",
+    //   url: "#",
+    //   icon: IconSearch,
+    // },
   ],
   documents: [
     // {
