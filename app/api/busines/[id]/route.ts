@@ -7,9 +7,11 @@ import { v2 as cloudinaryV2 } from "cloudinary"
 import { writeFile } from "fs/promises"
 import { randomUUID } from "crypto"
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-    const session = await getServerSession(authOptions)
+type Params = Promise<{ id: string }>
 
+export async function DELETE(req: Request,  context: { params: Params}) {
+    const session = await getServerSession(authOptions)
+    const params = await context.params
     if (!session || !session.user?.email) {
         return NextResponse.json({ error: "Non autorisé" }, { status: 401 })
     }
@@ -49,8 +51,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
     }
 }
 
-
-export async function PUT(req: Request, context: { params: { id: string } }) {
+export async function PUT(req: Request, context: { params: Params }) {
 
 
   try {
@@ -58,7 +59,7 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
     if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const formData = await req.formData();
-      const { params } = context;
+      const  params  = await context.params;
   const businesId = params.id;
 
     const existing = await prisma.busines.findUnique({

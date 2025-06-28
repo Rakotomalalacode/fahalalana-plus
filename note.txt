@@ -24,3 +24,6 @@ Description du cours
 {/*Miniature du Cours (Image, PDF)*/} Photo de couverture du Cours (Image)
 Fichier d'Introduction (PDF, etc.)
 Fichier Principal du Cours (ZIP du dossier) X
+
+
+buisnes

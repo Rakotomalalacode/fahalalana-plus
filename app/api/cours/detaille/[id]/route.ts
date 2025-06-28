@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+type Params = Promise<{ id: string }>
+
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Params }
 ) {
   try {
+    const params = await context.params
     const cours = await prisma.cours.findUnique({
       where: { id: params.id },
       include: {

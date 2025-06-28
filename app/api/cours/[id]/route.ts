@@ -7,14 +7,15 @@ import { v2 as cloudinaryV2 } from "cloudinary"
 import { writeFile } from "fs/promises"
 import { randomUUID } from "crypto"
 
+type Params = Promise<{ id: string }>
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context : { params: Params }
 ) {
   try {
     const session = await getServerSession(authOptions)
-
+    const params = await context.params
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Non autorisé" }, { status: 401 })
     }
@@ -60,8 +61,9 @@ export async function DELETE(
   }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, context: { params: Params }) {
   const session = await getServerSession(authOptions)
+  const params = await context.params
   if (!session) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }

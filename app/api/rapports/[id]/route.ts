@@ -3,9 +3,12 @@ import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+type Params = Promise<{ id: string }>
+
+export async function GET(req: NextRequest, context: { params: Params }) {
   try {
     const session = await getServerSession(authOptions)
+    const params = await context.params
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
@@ -36,8 +39,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, context: { params: Params }) {
   const session = await getServerSession(authOptions)
+  const params = await context.params
   const { title, content } = await req.json()
 
   const user = await prisma.user.findUnique({
@@ -52,8 +56,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   return Response.json(updated)
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, context : { params: Params }) {
   const session = await getServerSession(authOptions)
+  const params = await context.params
   const user = await prisma.user.findUnique({
     where: { email: session?.user?.email || "" },
   })

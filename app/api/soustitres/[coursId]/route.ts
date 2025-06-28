@@ -2,12 +2,15 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import type { NextRequest } from "next/server";
 import  cloudinary  from "@/lib/cloudinary"
+
+type Params = Promise<{ coursId: string }>
 export async function GET(
   req: NextRequest,
-  context: { params: { coursId: string } }
+  context: { params: Params }
 ) {
   try {
-    const { coursId } = context.params;
+    const params = await context.params
+    const  coursId  = params.coursId;
 
     if (!coursId) {
       return NextResponse.json({ error: "Cours ID manquant" }, { status: 400 });
@@ -25,9 +28,10 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  context: { params: { coursId: string } }
+  context: { params: Params }
 ) {
-  const { coursId } = context.params
+  const params = await context.params
+  const  coursId  = params.coursId
 
   if (!coursId) {
     return NextResponse.json({ error: "ID manquant" }, { status: 400 })
