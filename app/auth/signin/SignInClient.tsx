@@ -10,6 +10,7 @@ import { images } from "@/constants/images"
 import { SignOutButton } from "@/components/sign-out-button"
 import bcrypt from "bcryptjs"
 import { toast } from "sonner"
+import { Loader2 } from "lucide-react"
 
 type Pointeur<T> = {
     value: T
@@ -106,13 +107,12 @@ export default function SignInClient({ session }: any) {
         }
     }
 
-
     return (
         <div>
             {session ? (
                 <div className="w-screen outfit  bg-[url(/images/bg-continue.png)] bg-cover bg-no-repeat  h-screen">
                     <div className="w-screen h-screen bg-[#000000b7] flex items-center justify-center">
-                        <div className="w-[90%] space-y-9 flex flex-col justify-center items-center md:w-96 bg-gray-50 p-6 py-8 rounded-lg">
+                        <div className="w-[90%] space-y-9 flex flex-col justify-center items-center md:w-96 bg-background p-6 py-8 rounded">
                             <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
                                 <p>falar</p>
                                 <Image
@@ -134,14 +134,14 @@ export default function SignInClient({ session }: any) {
                             >
                                 Continuer en tant que {session.user?.name}
                             </button>
-                            <div className="hover:bg-gray-100 w-full p-2 flex justify-center items-center rounded">
+                            <div className="hover:bg-sidebar-accent text-center hover:underline w-full p-2 flex justify-center items-center rounded uderline">
                                 <SignOutButton />
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
-                <div className="min-h-screen outfit font-inter flex flex-wrap items-center justify-between bg-gray-50">
+                <div className="min-h-screen outfit font-inter flex flex-wrap items-center justify-between bg-gray-50 dark:bg-background *:">
                     <div className="lg:w-1/3 w-full px-8 space-y-3">
                         <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
                             <p>falar</p>
@@ -154,19 +154,19 @@ export default function SignInClient({ session }: any) {
                             <p>hy</p>
                         </div>
                         <div>
-                            <h2 className=" text-strat text-3xl font-extrabold text-gray-900">
+                            <h2 className=" text-strat text-3xl font-extrabold ">
                                 Se connecter
                             </h2>
                         </div>
                         <div className="text-start">
-                            <Link href="/auth/signup" className="text-gray-600 text-sm hover:text-gray-500">
+                            <Link href="/auth/signup" className="text-gray-600 dark:text-white text-sm hover:text-gray-500">
                                 Vous n'avez pas de compte ? <span className="underline text-black">S'inscrire</span>
                             </Link>
                         </div>
                         <form className="mt-3 space-y-6" onSubmit={handleSubmit}>
                             <div className="space-y-4">
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="email" className="block text-sm font-medium dark:text-white text-gray-700">
                                         Email
                                     </label>
                                     <input
@@ -181,7 +181,7 @@ export default function SignInClient({ session }: any) {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="password" className="block dark:text-white text-sm font-medium text-gray-700">
                                         Mot de passe
                                     </label>
                                     <input
@@ -203,7 +203,7 @@ export default function SignInClient({ session }: any) {
                                     disabled={loading}
                                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                                 >
-                                    {loading ? "Connexion..." : "Se connecter"}
+                                    {loading ? <Loader2 className="animate-spin h-6 w-6 " /> : "Se connecter"}
                                 </button>
                             </div>
 
@@ -213,14 +213,14 @@ export default function SignInClient({ session }: any) {
                                         <div className="w-full border-t border-gray-300" />
                                     </div>
                                     <div className="relative flex justify-center text-sm">
-                                        <span className="px-2 bg-gray-50 text-gray-500">Ou continuez avec</span>
+                                        <span className="px-2 bg-gray-50 dark:bg-background text-gray-500 dark:text-white">Ou continuez avec</span>
                                     </div>
                                 </div>
 
                                 <button
                                     type="button"
                                     onClick={() => handleSocialSignIn("google")}
-                                    className="w-full flex gap-2 justify-center py-2 px-4 border border-gray-300 rounded shadow text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                                    className="w-full flex gap-2 justify-center py-2 px-4 border border-gray-300 rounded shadow text-sm font-medium text-gray-700 bg-white dark:bg-sidebar-accent dark:text-white hover:bg-gray-50"
                                 >
                                     <Image
                                         src={icons.googleIcon}
@@ -233,7 +233,7 @@ export default function SignInClient({ session }: any) {
                                 <button
                                     type="button"
                                     onClick={() => handleSocialSignIn("github")}
-                                    className="w-full flex gap-2 justify-center py-2 px-4 border border-gray-300 rounded shadow text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                                    className="w-full flex gap-2 justify-center py-2 px-4 border border-gray-300 rounded shadow text-sm font-medium text-gray-700 bg-white dark:bg-sidebar-accent dark:text-white hover:bg-gray-50"
                                 >
                                     <Image
                                         src={icons.githubIcon}

@@ -61,7 +61,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="scroll-soft overflow-scroll overflow-x-hidden">
 
         {(() => {
           if (session?.user?.role === "teacher") {

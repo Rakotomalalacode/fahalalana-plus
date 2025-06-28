@@ -56,7 +56,7 @@ export function DelletCours({cours , name}: {cours: string , name: string}) {
       <DrawerTrigger asChild>
         <Button variant="outline" className="bg-[#ff413a] rounded hover:bg-[#ff413a]/90"><IconTrash size={45} className="text-white"   /></Button>
       </DrawerTrigger>
-      <DrawerContent className="font-outfit">
+      <DrawerContent className="font-outfit rounded">
         <DrawerHeader className="text-center">
           <DrawerTitle>Supprimer le cours</DrawerTitle>
           <DrawerDescription className="text-left">

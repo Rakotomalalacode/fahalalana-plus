@@ -24,8 +24,8 @@ const ApprenezEff = ({background} : {background : string}) => {
         fetchCounts()
       }, [])
     
-      if (loading) return <div className="w-full h-52 bg-primary-foreground rounded-lg animate-pulse"></div>
-      if (!data) return <div className="w-full h-52 bg-primary-foreground rounded-lg animate-pulse"></div>
+      if (loading) return <div className="w-full h-52 bg-gray-200 dark:bg-sidebar-accent  rounded-lg animate-pulse"></div>
+      if (!data) return <div className="w-full h-52 bg-gray-200 dark:bg-sidebar-accent rounded-lg animate-pulse"></div>
     
     return (
         <div>

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconLogout, IconSearch, type Icon } from "@tabler/icons-react"
+import { IconBrightnessHalf, IconLogout, IconSearch, type Icon } from "@tabler/icons-react"
 
 import {
   SidebarGroup,
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar"
 import { SignOutButton } from "./sign-out-button"
 import SearchDash from "./search/SearchDash"
+import ThemeSelector from "./autres/ThemeSelector"
 
 export function NavSecondary({
   items,
@@ -51,6 +52,12 @@ export function NavSecondary({
             <SidebarMenuButton>
               <IconSearch />
               <SearchDash />
+            </SidebarMenuButton>
+          </SidebarMenuItem >
+          <SidebarMenuItem >
+            <SidebarMenuButton>
+              <IconBrightnessHalf />
+              <ThemeSelector />
             </SidebarMenuButton>
           </SidebarMenuItem >
         </SidebarMenu>

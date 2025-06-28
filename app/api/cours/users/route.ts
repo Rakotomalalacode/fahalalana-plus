@@ -21,6 +21,9 @@ export async function GET() {
           email: userEmail,
         },
       },
+      include: {
+        achatCours: true,
+      },
       orderBy: {
         createdAt: "desc",
       },

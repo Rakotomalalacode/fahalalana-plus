@@ -41,13 +41,13 @@ const SearchDash = () => {
         <>
             <div>
                 <div
-                    className="bg-transparent text-foreground  placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 px-3 py-2 text-sm transition-[color,box-shadow] outline-none focus-visible:ring-[3px] "
+                    className="bg-transparent text-foreground  placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 py-2 text-sm transition-[color,box-shadow] outline-none focus-visible:ring-[3px] "
                     onClick={() => setOpen(true)}
                 >
                     <span className="flex grow items-center">
                         <span className="font-outfit">Recherchez</span>
                     </span>
-                    <kbd className="bg-transparent text-muted-foreground/70 ms-12 -me-1 inline-flex h-5 max-h-full items-center rounded border px-1 text-[0.625rem] font-outfit">
+                    <kbd className="bg-transparent text-muted-foreground/70 ms-5 -me-1 inline-flex h-5 max-h-full items-center rounded border px-1 text-[0.625rem] font-outfit">
                         ⌘K
                     </kbd>
                 </div>

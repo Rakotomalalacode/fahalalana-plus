@@ -14,14 +14,14 @@ export default function RootLayout({
 }) {
   return (
     <main>
-      <div className="w-full lg:sticky lg:top-0">
+      <div className="w-full lg:sticky z-50 lg:top-0">
         <NavbarOne />
       </div>
-      <div className="w-[95%] m-auto rounded sticky top-3 bg-primary-foreground mt-2 px-4 lg:hidden block">
+      <div className="w-[95%] m-auto rounded sticky bg-primary-foreground mt-2 mb-2 px-4 lg:hidden block">
         <Decouvrir />
       </div>
 
-      <div className="mt-3">
+      <div className="mt-0">
         {children}
       </div>
     </main>

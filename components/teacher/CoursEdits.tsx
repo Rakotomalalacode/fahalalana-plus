@@ -57,6 +57,7 @@ type Cours = {
 type Soutitre = {
     id: string
     titre: string
+    description : string
     videoUrl: string
     publicId: string
     coursId: string
@@ -174,7 +175,7 @@ const CoursEdits = ({ cours }: Cours) => {
     return (
         <Drawer>
             <DrawerTrigger>
-                <div className="h-9 px-4 py-2 has-[>svg]:px-3 rounded border bg-green-700 text-white shadow-xs hover:bg-green-700/90 hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50">
+                <div className="h-9 px-4 py-2 has-[>svg]:px-3 rounded border bg-green-700 text-white shadow-xs hover:bg-green-700/90 hover:text-accent-foreground dark:bg-green-700 dark:border-input dark:hover:bg-green-700/90">
                     <SquarePen size={45} className="text-white" />
                 </div>
             </DrawerTrigger>
@@ -228,9 +229,10 @@ const CoursEdits = ({ cours }: Cours) => {
                                     {soutitre.map((soutitre) => (
                                         <AccordionItem key={soutitre.id} value="item-1" className="w-full">
                                             <AccordionTrigger>{soutitre.titre}</AccordionTrigger>
-                                            <AccordionContent>
+                                            <AccordionContent className="space-y-6">
                                                 {/* {soutitre.videoUrl && <video controls className="w-full h-48 object-cover rounded" src={soutitre.videoUrl} />} */}
                                                 <ReactPlayer url={soutitre.videoUrl} controls width="100%" className="w-full h-48 object-cover rounded" height="192px" />
+                                                <p>{soutitre.description}</p>
                                             </AccordionContent>
                                             <div className="flex justify-end">
                                                 <button

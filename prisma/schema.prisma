@@ -55,6 +55,9 @@ model User {
   sessions Session[]
   reports  Report[]
   cours    Cours[]
+  busines  Busines[]
+  achatCours AchatCours[]
+  progression Progression[]
 }
 
 model VerificationToken {
@@ -83,25 +86,66 @@ model Report {
 }
 
 model Cours {
-  id          String   @id @default(uuid())
+  id          String      @id @default(uuid())
   titre       String
   description String
   imageUrl    String
-  publicId   String
+  publicId    String
   prix        Float
   categorie   String
-  user        User     @relation(fields: [userId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
   userId      String
-  createdAt   DateTime @default(now())
-   sousTitres  SousTitre[]
+  createdAt   DateTime    @default(now())
+
+  sousTitres  SousTitre[]
+  achatCours  AchatCours[]
+  progression Progression[]
 }
 
 model SousTitre {
-  id         String   @id @default(uuid())
-  titre      String
-  videoUrl   String
-  publicId   String
-  coursId    String
-  createdAt  DateTime @default(now())
-  cours      Cours    @relation(fields: [coursId], references: [id])
+  id          String   @id @default(uuid())
+  titre       String
+  description String
+  videoUrl    String
+  publicId    String
+  coursId     String
+  createdAt   DateTime @default(now())
+  cours       Cours    @relation(fields: [coursId], references: [id])
+}
+
+model Busines {
+  id            String   @id @default(uuid())
+  titre         String
+  prix          Float
+  categorie     String
+  description   String
+  zipUrl        String
+  zipPublicId   String
+  imageUrl      String
+  imagePublicId String
+  introUrl      String
+  introPublicId String
+  userId        String
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model AchatCours {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  cours     Cours    @relation(fields: [coursId], references: [id])
+  coursId   String
+  createdAt DateTime @default(now())
+}
+
+model Progression {
+  id        String   @id @default(uuid())
+  userId    String
+  coursId   String
+  videoId   String
+  date      DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  cours     Cours    @relation(fields: [coursId], references: [id])
 }

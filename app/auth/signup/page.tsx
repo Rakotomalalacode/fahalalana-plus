@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { images } from "@/constants/images"
 import { toast } from "sonner"
+import { Loader2 } from "lucide-react"
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="h-screen outfit flex flex-wrap items-center justify-between bg-gray-50">
+    <div className="h-screen outfit flex flex-wrap items-center justify-between bg-gray-50 dark:bg-background">
       <div className="lg:w-1/3 w-full px-8 space-y-3">
         <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
           <p>falar</p>
@@ -69,19 +70,19 @@ export default function SignUp() {
           <p>hy</p>
         </div>
         <div>
-          <h2 className=" text-strat text-3xl font-extrabold text-gray-900">
+          <h2 className=" text-strat text-3xl font-extrabold ">
             Créer un compte
           </h2>
         </div>
         <div className="text-start">
-          <Link href="/auth/signin" className="text-gray-600 text-sm hover:text-gray-500">
+          <Link href="/auth/signin" className="text-gray-600 text-sm dark:text-white hover:text-gray-500">
             Vous avez déjà un compte ?  <span className="underline text-black">Se connecter</span>
           </Link>
         </div>
         <form className="mt-3 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium dark:text-white text-gray-700">
                 Nom et prénom
               </label>
               <input
@@ -96,7 +97,7 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block dark:text-white text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
@@ -111,7 +112,7 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block dark:text-white text-sm font-medium text-gray-700">
                 Mot de passe
               </label>
               <input
@@ -126,7 +127,7 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPassword" className="block dark:text-white text-sm font-medium text-gray-700">
                 Confirmez le mot de passe
               </label>
               <input
@@ -147,7 +148,7 @@ export default function SignUp() {
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
             >
-              {loading ? "Création de compte..." : "Créer un compte"}
+              {loading ? <Loader2 className="animate-spin h-6 w-6 text-background" /> : "Créer un compte"}
             </button>
           </div>
         </form>

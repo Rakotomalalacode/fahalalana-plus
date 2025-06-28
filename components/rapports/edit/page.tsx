@@ -51,7 +51,7 @@ useEffect(() => {
                 <IconEdit size={45} className="text-white" />
                 </div>
             </DialogTrigger>
-            <DialogContent className="font-outfit">
+            <DialogContent className="font-outfit rounded">
                 <DialogHeader>
                     <DialogTitle className="text-center">Modifier le rapport</DialogTitle>
                     <DialogDescription className="text-center">Vous pouvez modifier le titre ou le contenu du rapport.</DialogDescription>

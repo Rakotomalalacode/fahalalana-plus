@@ -71,6 +71,28 @@ export async function POST(req: Request) {
 
 
 
+export async function GET() {
+  try {
+    const cours = await prisma.cours.findMany({
+      include: {
+        user: true,
+        sousTitres: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return NextResponse.json(cours);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erreur lors du chargement des cours" },
+      { status: 500 }
+    );
+  }
+}
+
+
 // import { NextResponse } from "next/server"
 // import { getServerSession } from "next-auth"
 // import { authOptions } from "@/lib/auth"

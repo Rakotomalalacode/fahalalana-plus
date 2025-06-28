@@ -13,8 +13,10 @@ export async function POST(req: Request) {
 
   const formData = await req.formData()
   const titre = formData.get("titrechanger") as string
+const description = formData.get("descriptionchanger") as string
   const coursId = formData.get("coursId") as string
   const file = formData.get("file") as File
+  
 
   if (!titre || !coursId || !file) {
     return NextResponse.json({ error: "Champs manquants" }, { status: 400 })
@@ -44,6 +46,7 @@ export async function POST(req: Request) {
   const sousTitre = await prisma.sousTitre.create({
     data: {
       titre,
+      description,
       coursId,
       videoUrl: upload.secure_url,
       publicId: upload.public_id,

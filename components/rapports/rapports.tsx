@@ -91,7 +91,7 @@ export default function Rapports() {
       </div>
 
       <div className="flex flex-wrap justify-between">
-        <div className="w-full lg:w-[48%]">
+        <div className="w-full lg:w-[45%]">
           <h1 className="text-xl font-bold mb-4">Avoir plus de rapport enregistrer ?</h1>
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
@@ -114,7 +114,7 @@ export default function Rapports() {
             </AccordionItem>
           </Accordion>
         </div>
-        <Command className="w-full lg:w-[48%] rounded-lg border shadow">
+        <Command className="w-full lg:w-[53%] rounded-lg border shadow">
           <CommandInput placeholder="Rechercher une rapport..." />
           <CommandList className="space-y-4">
             <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
@@ -132,7 +132,7 @@ export default function Rapports() {
                           <IconTrash size={45} className="text-white" />
                         </div>
                       </DialogTrigger>
-                      <DialogContent className="font-outfit">
+                      <DialogContent className="font-outfit rounded">
                         <DialogHeader>
                           <DialogTitle className="text-center">Supprimer le rapports</DialogTitle>
                         </DialogHeader>

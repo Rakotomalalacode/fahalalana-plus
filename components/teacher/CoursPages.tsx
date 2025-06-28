@@ -10,7 +10,7 @@ const CoursPages = () => {
             <div className="flex flex-wrap justify-between">
                 <div className="lg:w-[43%] w-full flex flex-col items-center lg:items-start">
                     <p className="text-xl mb-4">Avoir plus de connaissances à partager ?</p>
-                    <div className="w-fit lg:w-full justify-between flex flex-wrap-reverse space-y-6">
+                    <div className="w-full justify-between flex flex-wrap-reverse space-y-6">
                         <div className="space-y-4 w-[47%]" >
                             <CreactCategorier />
                         </div>

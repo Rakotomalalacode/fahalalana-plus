@@ -11,7 +11,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { AlertCircleIcon, PaperclipIcon, UploadIcon, XIcon } from "lucide-react"
-
+import { useEffect, useState } from "react"
 import {
     formatBytes,
     useFileUpload,
@@ -28,12 +28,14 @@ import {
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { toast } from "sonner"
 import { HandCoins } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { ScrollArea } from "../ui/scroll-area"
 import Image from "next/image"
 import { images } from "@/constants/images"
 import { Textarea } from "../ui/textarea"
+import { IconCircleDashedCheck } from "@tabler/icons-react"
 
 // const initialFiles = [
 //     {
@@ -44,6 +46,12 @@ import { Textarea } from "../ui/textarea"
 //         id: "document.pdf-1744638436563-8u5xuls",
 //     },
 // ]
+type Categorie = {
+    id: number
+    nom: string
+    createdAt: string
+}
+
 
 const Addbusiness = () => {
     const [open, setOpen] = React.useState(false)
@@ -60,7 +68,7 @@ const Addbusiness = () => {
                         <p className="text-lg text-center">Créer un business</p>
                     </div>
                 </DialogTrigger>
-                <DialogContent className="sm:min-w-[800px] flex flex-col items-center">
+                <DialogContent className="sm:min-w-[800px] flex flex-col items-center rounded">
                     <DrawerHeader>
                         <DrawerTitle className="outfit text-center">Crée un nouvelle business</DrawerTitle>
                         <DrawerDescription className="outfit -ml-4">
@@ -114,6 +122,15 @@ const Addbusiness = () => {
 export default Addbusiness
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
+    const [title, setTitle] = useState("");
+    const [price, setPrice] = useState("");
+    const [categorie, setCategorie] = useState("")
+    const [description, setDescription] = useState("");
+    const [coverFile, setCoverFile] = useState<File | null>(null);
+    const [introFile, setIntroFile] = useState<File | null>(null);
+    const [loading, setLoading] = useState(true)
+    const [categories, setCategories] = useState<Categorie[]>([])
+
 
     const maxSize = 5024 * 1024 * 1024 // 10MB default
 
@@ -135,8 +152,96 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
     const file = files[0]
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch("/api/categories")
+                const data = await res.json()
+                setCategories(data)
+            } catch (err) {
+                console.error("Erreur:", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchCategories()
+    }, [])
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        const formData = new FormData()
+        formData.append("titre", title)
+        formData.append("prix", price)
+        formData.append("categorie", categorie)
+        formData.append("description", description)
+        formData.append("zip", file.file as File)
+        formData.append("image", coverFile as File)
+        formData.append("intro", introFile as File)
+
+        try {
+            const res = await fetch("/api/busines", {
+                method: "POST",
+                body: formData,
+            })
+
+            if (res.ok) {
+                //const data = await res.json()
+                //console.log("Business ajouté :", data)
+                toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Cours ajouté avec succès !</div>)
+                setTitle("")
+                setPrice("")
+                setCategorie("")
+                setDescription("")
+                setCoverFile(null)
+                setIntroFile(null)
+                removeFile(files[0]?.id)
+            } else {
+                const errorData = await res.json()
+                console.error("Erreur API :", errorData)
+            }
+        } catch (error) {
+            console.error("Erreur réseau :", error)
+        }
+    }
+
+
+    // const handleSubmit = async (e: React.FormEvent) => {
+    //   e.preventDefault();
+
+    //   if (!file || !coverFile || !introFile) {
+    //     alert("Tous les fichiers sont requis.");
+    //     return;
+    //   }
+
+    //   const formData = new FormData();
+    //   formData.append("title", title);
+    //   formData.append("price", price);
+    //   formData.append("category", category);
+    //   formData.append("description", description);
+    //   formData.append("mainFile", file.file as File); // ZIP
+    //   formData.append("coverFile", coverFile); // Image
+    //   formData.append("introFile", introFile); // PDF
+
+    //   const res = await fetch("/api/busines", {
+    //     method: "POST",
+    //     body: formData,
+    //   });
+
+    //   if (!res.ok) {
+    //      const errorData = await res.json();
+    //   console.error("Erreur lors de l'envoi du formulaire :", errorData);
+    //   } else {
+    //     const data = await res.json();
+    //     console.log("Cours créé :", data);
+    //   }
+    // };
+
+
+
     return (
-        <form className={cn("grid items-start w-full gap-6 outfit", className)}>
+        <form onSubmit={handleSubmit} className={cn("grid items-start w-full gap-6 outfit", className)}>
             <ScrollArea className=" h-[65vh] items-start space-y-6 w-full " >
                 <div className="flex flex-wrap-reverse lg:flex-wrap justify-between gap-6 lg:gap-0 w-full">
                     <div className="flex w-full lg:w-[45%] flex-col gap-2">
@@ -217,23 +322,38 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     </div>
                     <div className="space-y-6 w-full lg:w-[50%] ">
                         <div className="grid gap-3.5">
-                            <Label htmlFor="username">Titre du cours</Label>
-                            <Input id="username" className="rounded" placeholder="Entre votre nouvelle cours" />
+                            <Label htmlFor="titre">Titre du cours</Label>
+                            <Input id="titre" value={title} onChange={(e) => setTitle(e.target.value)} className="rounded" placeholder="Entre votre nouvelle cours" />
                         </div>
                         <div className="grid gap-3.5">
-                            <Label htmlFor="username">Prix du cours</Label>
-                            <Input id="username" className="rounded" placeholder="Entre votre prix du cours" />
+                            <Label htmlFor="price">Prix du cours</Label>
+                            <Input id="price" value={price} onChange={(e) => setPrice(e.target.value)} className="rounded" placeholder="Entre votre prix du cours" />
                         </div>
                         <div className="grid gap-3.5">
-                            <Label htmlFor="username">Categorie du cours</Label>
-                            <Select>
+                            <Label htmlFor="category">Categorie du cours</Label>
+                            <Select onValueChange={(value) => setCategorie(value)}>
                                 <SelectTrigger className="w-full rounded">
                                     <SelectValue placeholder="Choisir une categorie" />
                                 </SelectTrigger>
-                                <SelectContent className="rounded font-outfit">
-                                    <SelectItem className="rounded" value="light">Light</SelectItem>
-                                    <SelectItem className="rounded" value="dark">Dark</SelectItem>
-                                    <SelectItem className="rounded" value="system">System</SelectItem>
+                                <SelectContent className="rounded">
+
+                                    {loading ? (
+                                        <p className="outfit">Chargement...</p>
+                                    ) : categories.length === 0 ? (
+                                        <p className="outfit">Aucune catégorie trouvée.</p>
+                                    ) : (
+                                        <ul className="space-y-2 outfit">
+                                            {categories.map((cat) => (
+                                                <SelectItem
+                                                    value={cat.nom}
+                                                    key={cat.id}
+                                                >
+                                                    {cat.nom}
+                                                </SelectItem>
+                                            ))}
+                                        </ul>
+                                    )}
+
                                 </SelectContent>
                             </Select>
                         </div>
@@ -241,17 +361,17 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                 </div>
                 <div className="flex flex-wrap justify-between mt-6 gap-6 lg:gap-0 w-full">
                     <div className="flex w-full lg:w-[45%] flex-col gap-3.5">
-                        <Label htmlFor="username">Fichier d'Introduction (PDF, etc.)</Label>
-                        <Input id="username" type="file" className="rounded" placeholder="Entre votre description du cours" />
+                        <Label htmlFor="intro">Fichier d'Introduction (PDF, etc.)</Label>
+                        <Input id="intro" onChange={(e) => setIntroFile(e.target.files?.[0] || null)} type="file" className="rounded" placeholder="Entre votre description du cours" />
                     </div>
                     <div className="flex w-full lg:w-[50%] flex-col gap-3.5">
-                        <Label htmlFor="username">Photo de couverture du Cours (Image)</Label>
-                        <Input id="username" type="file" className="rounded" placeholder="Entre votre lien du cours" />
+                        <Label htmlFor="couver">Photo de couverture du Cours (Image)</Label>
+                        <Input id="couver" onChange={(e) => setCoverFile(e.target.files?.[0] || null)} type="file" className="rounded" placeholder="Entre votre lien du cours" />
                     </div>
                 </div>
                 <div className="mt-6 w-full flex flex-col gap-3.5">
                     <Label htmlFor="message">Description du cours</Label>
-                    <Textarea placeholder="Entre la description de votre cours" id="message" className="rounded w-[99.5%] min-h-20 m-auto" />
+                    <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Entre la description de votre cours" id="message" className="rounded w-[99.5%] min-h-20 m-auto" />
                 </div>
                 <Button className="rounded mt-6 w-full mb-6 lg:mb-0" type="submit">Valide le business</Button>
             </ScrollArea>

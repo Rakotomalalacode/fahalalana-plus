@@ -18,10 +18,10 @@ export function SignOutButton() {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <p
-          className="outfit"
+          className="outfit w-full"
         >Se déconnecter</p>
       </AlertDialogTrigger>
-      <AlertDialogContent className="outfit">
+      <AlertDialogContent className="outfit rounded">
         <AlertDialogHeader>
           <AlertDialogTitle>Déconnexion ?</AlertDialogTitle>
           <AlertDialogDescription>

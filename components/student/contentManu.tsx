@@ -2,19 +2,26 @@
 
 import { useSidebar } from "@/components/context/SidebarContext"
 import Rapports from "../rapports/rapports"
+import DashboardPage from "./DashboardPage"
+import CoursPage from "./CoursPage"
+import FormationsPage from "./FormationsPage"
+import DettailCours from "./DettailCours"
+import CoursView from "./CoursView"
 
 export function ContentManu() {
-  const { currentMenu } = useSidebar()
-
+  const { currentMenu, selectedCours } = useSidebar()
 const views: Record<string, React.ReactNode> = {
-  dashboard: <p>page dashboard</p>,
-  cours: <p>page cours</p>,
-  formations: <p>page Formations</p>,
+  dashboard: <DashboardPage />,
+  listcours: <CoursView />,
+  cours:  selectedCours ? ( <CoursPage coursCible={selectedCours} /> ) : ( <p className="p-4 text-red-500">Aucun cours sélectionné.</p> ),
+  formations: <FormationsPage />,
   analytics: <p>page analytics</p>,
-  rapports: <Rapports />
+  rapports: <Rapports />,
+  dettailcours: selectedCours ? ( <DettailCours coursCible={selectedCours} /> ) : ( <p className="p-4 text-red-500">Aucun cours sélectionné.</p> ),
+
 }
 
-return views[currentMenu] ?? <p>page dashboard</p>
+return views[currentMenu] ?? <DashboardPage />
 
 }
 

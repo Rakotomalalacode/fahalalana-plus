@@ -1,47 +1,64 @@
-import { prisma } from "@/lib/prisma"
-import cloudinary from "@/lib/cloudinary"
 import { NextResponse } from "next/server"
-import { getServerSession } from "next-auth"
+import { prisma } from "@/lib/prisma"
 import { authOptions } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import cloudinary from "@/lib/cloudinary"
 import { v2 as cloudinaryV2 } from "cloudinary"
 import { writeFile } from "fs/promises"
 import { randomUUID } from "crypto"
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions)
 
-  if (!session || !session.user?.email) {
-    return NextResponse.json({ error: "Non autorisé" }, { status: 401 })
-  }
-
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   try {
+    const session = await getServerSession(authOptions)
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: "Non autorisé" }, { status: 401 })
+    }
+
     const cours = await prisma.cours.findUnique({
       where: { id: params.id },
+      include: { sousTitres: true },
     })
 
     if (!cours) {
       return NextResponse.json({ error: "Cours non trouvé" }, { status: 404 })
     }
 
+    if (cours.userId !== session.user.id) {
+      return NextResponse.json({ error: "Action non autorisée" }, { status: 403 })
+    }
+
+    for (const st of cours.sousTitres) {
+      if (st.publicId) {
+        await cloudinary.uploader.destroy(st.publicId, {
+          resource_type: "video",
+        })
+      }
+    }
+
+
+    await prisma.sousTitre.deleteMany({
+      where: { coursId: cours.id },
+    })
+
     if (cours.imageUrl && cours.publicId) {
-      // 🧨 Supprime le fichier sur Cloudinary
       await cloudinary.uploader.destroy(cours.publicId)
     }
 
-    // 🧹 Supprime le cours en BDD
     await prisma.cours.delete({
-      where: { id: params.id },
+      where: { id: cours.id },
     })
 
-    return NextResponse.json({ success: true })
-  } catch (err) {
-    console.error("Erreur suppression cours :", err)
+    return NextResponse.json({ message: "Cours supprimé avec succès" }, { status: 200 })
+  } catch (error) {
+    console.error("Erreur suppression cours:", error)
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
   }
 }
-
-
-
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions)

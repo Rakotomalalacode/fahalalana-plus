@@ -11,6 +11,7 @@ import { images } from '@/constants/images'
 import { useState } from 'react'
 import { toast } from "sonner"
 import { IconCircleDashedCheck } from '@tabler/icons-react'
+import { Textarea } from '../ui/textarea'
 
 // const initialFiles = [
 //     {
@@ -37,6 +38,7 @@ import { IconCircleDashedCheck } from '@tabler/icons-react'
 // ]
 const AddSoutitre = ({ coursId }: { coursId: string }) => {
     const [sousTitre, setSousTitre] = useState("")
+    const [sousDescription, setSousDescription] = useState("")
     const maxSizeMB = 2048
     const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
     const maxFiles = 6
@@ -68,6 +70,7 @@ const AddSoutitre = ({ coursId }: { coursId: string }) => {
 
         const formData = new FormData()
         formData.append("titrechanger", sousTitre)
+        formData.append("descriptionchanger", sousDescription)
         formData.append("coursId", coursId)
         formData.append("file", files[0].file as File) // fichier vidéo
 
@@ -82,6 +85,8 @@ const AddSoutitre = ({ coursId }: { coursId: string }) => {
             toast(<div className="text-green-700 font-outfit text-sm flex gap-2 items-center"><IconCircleDashedCheck /> Cours ajouté avec succès !</div>)
             clearFiles()
             setSousTitre("")
+            setSousDescription("")
+            removeFile(files[0]?.id)
         } else {
             console.error("Erreur :", data.error)
         }
@@ -105,6 +110,12 @@ const AddSoutitre = ({ coursId }: { coursId: string }) => {
                         required
                         className="mt-1 block w-full px-3 py-1.5 placeholder:text-sm border border-gray-300 rounded  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
+                </div>
+                <div className="space-y-2">
+                    <label htmlFor="soutitre" className="block text-sm font-medium text-gray-700">
+                        Description du soutitre
+                    </label>
+                    <Textarea name="sousDescription" className="rounded" value={sousDescription} onChange={(e) => setSousDescription(e.target.value)} placeholder="Description" />
                 </div>
             </div>
             <div className="flex flex-col gap-2">

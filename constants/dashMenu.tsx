@@ -102,7 +102,7 @@ export const DataStudent = {
     },
     {
       title: "Cours",
-      key: "cours",
+      key: "listcours",
       icon: IconBrandZoom,
     },
   ],
