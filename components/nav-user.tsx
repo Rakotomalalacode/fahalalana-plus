@@ -32,6 +32,7 @@ import { user } from "@/types/user"
 import { SignOutButton } from "./sign-out-button"
 import Link from "next/link"
 
+
 export function NavUser({
   user,
 }: {
@@ -94,6 +95,9 @@ export function NavUser({
               <DropdownMenuItem >
                 Email : {user.email}
               </DropdownMenuItem>
+              {user.role == "student" ? <DropdownMenuItem className="outfit">
+                <Link href={`/instructor?email=${user.email}`} target="_blank">Instructor Dashboar</Link>
+              </DropdownMenuItem> : null}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="outfit">

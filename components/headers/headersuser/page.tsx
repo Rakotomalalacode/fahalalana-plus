@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
-import SignInClient from "./SignInClient"
+import NavebarTowclient from "./NavebarTowclient"
 
-export default async function SignInPage() {
+export default async function NavbarTow() {
   const session = await getServerSession(authOptions)
 
-  return <SignInClient session={session} />
+  return <NavebarTowclient session={session} />
 }

@@ -196,7 +196,7 @@ export function ListeCours() {
           {busnis.map((busnis) => (
             <CommandItem key={busnis.id} className="mb-2">
               <div className="flex gap-4 w-full">
-                <Image src={busnis.imageUrl} width={200} height={200} className="w-[100px] h-[60px] rounded" alt={busnis.imageUrl || "Auteur"} />
+                <Image src={busnis.imageUrl} width={200} height={200} className="w-[100px] h-[60px] rounded" alt={busnis.titre || "Auteur"} />
                 <div className="w-[90%] flex justify-between items-center">
                   <div>
                     <span className="font-medium">{busnis.titre}</span>

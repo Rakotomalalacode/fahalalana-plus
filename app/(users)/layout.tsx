@@ -1,6 +1,6 @@
 import Decouvrir from '@/components/Decouvrir/Decouvrir'
 import Footer from '@/components/footer/Footer'
-import NavbarOne from '@/components/headers/NavbarOne'
+import NavbarTow from '@/components/headers/headersuser/page'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <main>
       <div className="w-full lg:sticky z-50 lg:top-0">
-        <NavbarOne />
+        <NavbarTow />
       </div>
       <div className="w-[95%] m-auto rounded sticky bg-primary-foreground mt-2 mb-2 px-4 lg:hidden block">
         <Decouvrir />
@@ -25,7 +25,8 @@ export default function RootLayout({
       <div className="mt-0">
         {children}
       </div>
-      <div className='w-full mt-8'>
+
+      <div className='w-full'>
         <Footer />
       </div>
     </main>

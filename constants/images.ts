@@ -5,5 +5,10 @@ export const images = {
     "portraitteacher" : "/images/portrait-teacher.png",
     "LangagePython" : "/images/Langage-Python.png",
     "videonew" : "/images/videonew.png",
-    "ImageDefault" : "/images/Photo-Image-Icon.jpg"
+    "ImageDefault" : "/images/Photo-Image-Icon.jpg",
+    "virtualclassroom" : "/images/virtual-classroom.png",
+    "téléchargement" : "/images/téléchargement.png",
+    "images__1" : "/images/images__1.png",
+    "imagesame" : "/images/imagesame.png",
+    "rereer" : "/images/rereer.png",
 }

@@ -178,7 +178,6 @@ const handleVideoEnd = async () => {
                 Vous êtes actuellement à {progress}% de réussite.
               </div>
               <div className="flex items-center">
-
                 { progress == 100 ? <Image src={gifs.celebration} alt="progress" width={500} height={500} className="w-6 h-6 -ml-2 -mt-1" />  : <Image src={gifs.run} alt="progress" width={500} height={500} className="w-6 h-6 -ml-2" /> }
                 <div className="w-full h-3 bg-white rounded-sm overflow-hidden">
                   <div
@@ -188,6 +187,7 @@ const handleVideoEnd = async () => {
                 </div>
                 <Image src={Icons.certificate} alt="progress" width={500} height={500} className="w-7 h-7 ml-1.5" />
               </div>
+{ progress == 100 ?<Image src={Icons.certyf} alt="progress" width={500} height={500} className="w-24 -ml-2 absolute top-4 z-0 right-4 opacity-75" />: null}
               <div className="w-full flex justify-center mt-7">
                 <div className="flex  w-fit text-5xl gap-1 qualyneue items-center">
                   <p>falar</p>
@@ -207,7 +207,7 @@ const handleVideoEnd = async () => {
   mode="single"
   selected={date}
   onSelect={setDate}
-  className="rounded-lg border mt-4 lg:mt-0"
+  className="rounded-lg border w-full lg:w-auto mt-4 lg:mt-0"
   modifiers={{
     red: highlightedDates,
   }}
@@ -221,7 +221,7 @@ const handleVideoEnd = async () => {
         </div>
 
        
-        <div className="w-full lg:w-[350px] bg-gray-100 p-4 rounded-lg overflow-y-auto max-h-full">
+        <div className="w-full lg:w-[350px] bg-gray-100 dark:bg-sidebar p-4 rounded-lg overflow-y-auto max-h-full">
           <h2 className="text-xl font-semibold mb-4">
             {cours.titre.slice(0, 30)}
           </h2>
@@ -230,7 +230,7 @@ const handleVideoEnd = async () => {
               key={video.id}
               onClick={() => changeVideo(video)}
               className={`p-3 mb-2 rounded cursor-pointer border ${currentVideo?.id === video.id
-                ? "bg-blue-100 border-blue-500"
+                ? "bg-blue-100 dark:bg-accent border-blue-500"
                 : "hover:bg-gray-200"
                 }`}
             >
@@ -238,9 +238,13 @@ const handleVideoEnd = async () => {
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="font-medium flex justify-between w-full py-0 ">
-                      <div className="flex gap-2">
+                      <div className="lg:not-first:flex hidden gap-2">
                         {completed.includes(video.id) ? <IconChecks className="text-green-500" /> : ""}
                         {video.titre}
+                      </div>
+                      <div className="flex lg:hidden gap-2">
+                        {completed.includes(video.id) ? <IconChecks className="text-green-500" /> : ""}
+                        {video.titre}..
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="flex gap-3 items-center mt-4 text-sm text-gray-700">

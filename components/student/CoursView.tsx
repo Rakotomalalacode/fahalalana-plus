@@ -83,12 +83,12 @@ export default function CoursPage() {
     return <p className="text-gray-500">Vous n'avez encore acheté aucun cours.</p>;
 
   return (
-    <div className="flex flex-wrap space-y-6 h-fit lg:space-x-3.5 px-4 justify-center lg:justify-start lg:px-0 ">
+    <div className="flex flex-wrap space-y-6 h-fit lg:space-x-3.5  justify-center lg:justify-start lg:px-0 ">
       {mesCours.map((cours) => (
         <div
           key={cours.coursId}
           onClick={() => handleClick(cours.coursId)}
-          className="group transition-all relative cursor-pointer  lg:w-[307.7px] border p-4 items-start rounded hover:bg-primary-foreground"
+          className="group transition-all relative cursor-pointer w-full  h-fit lg:w-[307.7px] border p-4 items-start rounded hover:bg-primary-foreground"
         >
           <div className="flex w-full gap-4">
             {/* <Image
@@ -109,14 +109,18 @@ export default function CoursPage() {
             )}
 
             <div className="flex-1 z-50">
-              <h2 className="text-lg font-semibold">{cours.titre}</h2>
+              {cours?.titre ? (
+                <h2 className="text-lg font-semibold">{cours.titre.slice(0, 18)}...</h2>
+              ) : (
+                <h2 className="text-lg font-semibold">Titre indisponible</h2>
+              )}
               <p className="text-gray-500 flex gap-2 items-center text-sm mt-1">
                 <User size={16} /> {cours.enseignant}
               </p>
             </div>
           </div>
           <div className="w-full flex items-center justify-between mt-3">
-            { cours.progress == 100 ? <Image src={gifs.celebration} alt="progress" width={500} height={500} className="w-6 h-6 -ml-2 -mt-1" />  : <Image src={gifs.run} alt="progress" width={500} height={500} className="w-6 h-6 -ml-2" /> }
+            {cours.progress == 100 ? <Image src={gifs.celebration} alt="progress" width={500} height={500} className="w-6 h-6 -ml-2 -mt-1" /> : <Image src={gifs.run} alt="progress" width={500} height={500} className="w-6 h-6 -ml-2" />}
             <div className="w-[80%] text-sm">
               <div className="h-2 w-full bg-gray-300 rounded overflow-hidden">
                 <div
@@ -127,7 +131,7 @@ export default function CoursPage() {
             </div>
             <span className="font-bold text-green-600 ml-2">{cours.progress}%</span>
           </div>
-          { cours.progress == 100 ?<Image src={Icons.certyf} alt="progress" width={500} height={500} className="w-24 -ml-2 absolute top-1 z-0 right-4 opacity-75" />: null}
+          {cours.progress == 100 ? <Image src={Icons.certyf} alt="progress" width={500} height={500} className="w-24 -ml-2 absolute top-1 z-0 right-4 opacity-75" /> : null}
           <span className="inline-block absolute top-3 right-4 text-orangeme transform group-hover:translate-x-1 transition-transform duration-300">
             <IconChevronsRight />
           </span>
