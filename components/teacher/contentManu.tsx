@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard"
 import Equipe from "./Equipe"
 import { useSidebar } from "../context/SidebarContext"
 import Rapports from "../rapports/rapports"
+import ChatPage from "../chat/ChatPage"
 
 export function ContentManu() {
   const { currentMenu } = useSidebar()
@@ -15,7 +16,8 @@ const views: Record<string, React.ReactNode> = {
   cours: <CoursPages />,
   equipe: <Equipe />,
   analytics: <Analytics />,
-  rapports: <Rapports />
+  rapports: <Rapports />,
+  chat: <ChatPage />,
 }
 
 return views[currentMenu] ?? <Dashboard  />

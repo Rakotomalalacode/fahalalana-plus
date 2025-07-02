@@ -75,7 +75,7 @@ export const Data = {
       name: "Assistant de mots",
       url: "#",
       icon: IconFileWord,
-      key: "dashboard",
+      key: "chat",
     },
   ],
 }
@@ -139,7 +139,7 @@ export const DataStudent = {
       name: "Assistant de mots",
       url: "#",
       icon: IconFileWord,
-      key: "dashboard",
+      key: "chat",
     },
   ],
 }
