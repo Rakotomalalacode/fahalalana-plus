@@ -11,6 +11,7 @@ import {
   IconUsers,
   IconSchool,
   IconBrandZoom,
+  IconRobotFace,
 } from "@tabler/icons-react"
 
 export const Data = {
@@ -74,7 +75,7 @@ export const Data = {
     {
       name: "Assistant de mots",
       url: "#",
-      icon: IconFileWord,
+      icon: IconRobotFace,
       key: "chat",
     },
   ],
@@ -138,7 +139,7 @@ export const DataStudent = {
     {
       name: "Assistant de mots",
       url: "#",
-      icon: IconFileWord,
+      icon: IconRobotFace,
       key: "chat",
     },
   ],

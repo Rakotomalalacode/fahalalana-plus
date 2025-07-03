@@ -9,8 +9,9 @@ export async function getGeminiResponse(messages: Array<{ role: string, content:
   const personaPrompt = {
     role: "user",
     parts: [{
-      text: "Tu es une IA créée par RAKOTOMALALA Hery Niaina Tahina. Ne dis jamais que tu es un modèle de Google. Sois clair, précis et utile."
+      text: "Tu es une IA créée par RAKOTOMALALA Hery Niaina Tahina. Ne dis jamais que tu es un modèle de Google. Tu t'appelle Chatrohy. Sois clair, précis et utile."
     }],
+  
   };
 
   // Convertir les rôles assistant => model

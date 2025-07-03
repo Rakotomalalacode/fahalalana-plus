@@ -24,6 +24,7 @@ type Busines = {
   description: string
   imageUrl: string
   createdAt: string
+  lectures : number
   user: {
     name: string | null
     email: string
@@ -66,7 +67,7 @@ const coursBuy = () => {
               <div className="space-y-1 px-4">
                 <p className="text-xl font-bold">{busines.titre}</p>
                 <p className="flex gap-2 items-center hover:underline"><User size={16} />{busines.user.name || "Inconnu"}</p>
-                <p><span className="font-bold">45</span> Lectures <span className="font-bold">{busines.prix.toLocaleString()}</span> Ar</p>
+                <p><span className="font-bold">{busines.lectures}</span> Lectures <span className="font-bold">{busines.prix.toLocaleString()}</span> Ar</p>
               </div>
               <hr />
               <div className="flex justify-between px-4 pb-4 items-center">
@@ -76,25 +77,6 @@ const coursBuy = () => {
             </div>
           </CarouselItem>
         ))}
-        {/* {businesList.map((busines) => (
-          <CarouselItem key={busines.id} className="md:basis-1/2 lg:basis-[335px]">
-            <div className="w-80 space-y-4 hover:bg-primary-foreground shadow border rounded">
-              <Image src={busines.imageUrl} alt={busines.titre} className="w-full rounded-t h-[170px]" width={500} height={500} />
-              <div className="space-y-1 px-4">
-                <p className="text-xl font-bold">{busines.titre}</p>
-                <p className="flex gap-2 items-center hover:underline"><User size={16} />{busines.user.name || "Inconnu"}</p>
-                <p><span className="font-bold">45</span> Lectures <span className="font-bold">{busines.prix.toLocaleString()}</span> Ar</p>
-              </div>
-              <hr />
-              <div className="flex justify-between px-4 pb-4 items-center">
-                <button
-                  className="bg-orangeme cursor-pointer flex gap-2 rounded hover:bg-orangeme/90 text-white py-3 px-6"
-                ><IconHandClick />Acheter maintenant</button>
-                <Link href="/" className="bg-orangeme hover:bg-orangeme/90 rounded text-white py-3 px-4"><ShoppingCart /></Link>
-              </div>
-            </div>
-          </CarouselItem>
-        ))} */}
       </CarouselContent>
       <CarouselPrevious className="bg-orangeme rounded text-white border-none" />
       <CarouselNext className="bg-orangeme rounded text-white border-none" />

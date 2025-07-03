@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ShoppingCart, User } from "lucide-react"
 import { AddToCartButton } from "@/components/coursBuy/AddToCartButton" // bouton personnalisé
 
+
 type Params = Promise<{ id: string }>
 
 export default async function BusinesDetailPage( context : {params : Params}) {

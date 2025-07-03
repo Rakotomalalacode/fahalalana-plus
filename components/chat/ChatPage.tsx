@@ -6,14 +6,23 @@ import Image from "next/image";
 import { useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Textarea } from "../ui/textarea";
+import { useSession } from "next-auth/react"
 
 type Message = {
   role: "user" | "assistant";
   content: string;
 };
 
-export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([]);
+export default function ChatPage( ) {
+   const { data: session, status } = useSession()
+  const [messages, setMessages] = useState<Message[]>([
+  {
+    role: "assistant",
+    content: `Bonjour ${session?.user?.name}, que puis-je faire pour vous aujourd'hui ?`
+  }
+]);
+
+  // const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -65,11 +74,11 @@ export default function ChatPage() {
           <p>hy</p>
         </div>
       </div>
-      <ScrollArea className="p-4 h-full w-[100%]">
+      <ScrollArea className="p-4 h-[520px] lg:h-full  w-[100%]">
         {messages.map((msg, idx) => (
           <div key={idx} className={`mb-3 ${msg.role === "user" ? "text-right" : "text-left"}`}>
             <span
-              className={`inline-block py-2 rounded-3xl px-4 ${msg.role === "user" ? "bg-blue-200" : "bg-gray-200"
+              className={`inline-block py-2 rounded-3xl px-4 ${msg.role === "user" ? "bg-blue-200" : "bg-gray-200 dark:bg-foreground"
                 }`}
             >
               {msg.content}
