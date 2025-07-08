@@ -1,6 +1,9 @@
+import { SidebarProviderCustom } from '@/components/context/SidebarContext'
+
 import Decouvrir from '@/components/Decouvrir/Decouvrir'
 import Footer from '@/components/footer/Footer'
 import NavbarOne from '@/components/headers/NavbarOne'
+import Mobilemenu from '@/components/headers/Mobilemenu'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,7 +17,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <SidebarProviderCustom>
     <main>
+      <div className="lg:hidden w-full block">
+        <Mobilemenu />
+      </div>
       <div className="w-full lg:sticky z-50 lg:top-0">
         <NavbarOne />
       </div>
@@ -29,5 +36,6 @@ export default function RootLayout({
         <Footer />
       </div>
     </main>
+    </SidebarProviderCustom>
   )
 }

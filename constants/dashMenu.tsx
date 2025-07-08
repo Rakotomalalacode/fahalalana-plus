@@ -12,7 +12,56 @@ import {
   IconSchool,
   IconBrandZoom,
   IconRobotFace,
+  IconSquarePlus,
 } from "@tabler/icons-react"
+
+export const DataAdimn = {
+  navMain: [
+    {
+      title: "Dashboard",
+      key: "dashboard",
+      url: "t/dash",
+      icon: IconDashboard,
+    },
+    {
+      title: "Analytics",
+      key: "analytics",
+      icon: IconChartBar,
+    },
+    {
+      title: "Autres",
+      key: "cours",
+      icon: IconSquarePlus,
+    },
+    {
+      title: "Équipe",
+      key: "equipe",
+      icon: IconUsers,
+    },
+  ],
+  navSecondary: [
+    {
+      title: "Obtenir de l'aide",
+      url: "/obtenir-de-l-aide",
+      icon: IconHelp,
+    },
+  ],
+  documents: [
+    {
+      name: "Rapports",
+      url: "#",
+      icon: IconReport,
+      key: "rapports",
+    },
+    {
+      name: "Assistant de mots",
+      url: "#",
+      icon: IconRobotFace,
+      key: "chat",
+    },
+  ],
+}
+
 
 export const Data = {
   navMain: [
@@ -22,11 +71,6 @@ export const Data = {
       url: "t/dash",
       icon: IconDashboard,
     },
-    // {
-    //   title: "Lifecycle",
-    //   url: "#",
-    //   icon: IconListDetails,
-    // },
     {
       title: "Analytics",
       key: "analytics",
@@ -44,28 +88,13 @@ export const Data = {
     },
   ],
   navSecondary: [
-    // {
-    //   title: "Paramètres",
-    //   url: "#",
-    //   icon: IconSettings,
-    // },
     {
       title: "Obtenir de l'aide",
       url: "/obtenir-de-l-aide",
       icon: IconHelp,
     },
-    // {
-    //   title: "Recherche",
-    //   url: "#",
-    //   icon: IconSearch,
-    // },
   ],
   documents: [
-    // {
-    //   name: "Data Library",
-    //   url: "#",
-    //   icon: IconDatabase,
-    // },
     {
       name: "Rapports",
       url: "#",
@@ -108,28 +137,13 @@ export const DataStudent = {
     },
   ],
   navSecondary: [
-    // {
-    //   title: "Paramètres",
-    //   url: "#",
-    //   icon: IconSettings,
-    // },
     {
       title: "Obtenir de l'aide",
       url: "/obtenir-de-l-aide",
       icon: IconHelp,
     },
-    // {
-    //   title: "Recherche",
-    //   url: "#",
-    //   icon: IconSearch,
-    // },
   ],
   documents: [
-    // {
-    //   name: "Data Library",
-    //   url: "#",
-    //   icon: IconDatabase,
-    // },
     {
       name: "Rapports",
       url: "#",

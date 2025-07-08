@@ -38,7 +38,7 @@ export function CreactCategorier() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
-            className="group cursor-pointer relative h-44 w-44 md:w-full flex flex-col gap-4 justify-center items-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-[#00ac69]/90 hover:bg-[#00ac69] rounded-lg text-whitefocus:outline-none focus:ring-2 focus:ring-offset-2  disabled:opacity-50"
+            className="group cursor-pointer relative h-44 w-full flex flex-col gap-4 justify-center items-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-[#00ac69]/90 hover:bg-[#00ac69] rounded-lg text-whitefocus:outline-none focus:ring-2 focus:ring-offset-2  disabled:opacity-50"
           >
             <ChartBarStacked size={40} />
             <p className="text-lg text-center">Créer un catégorie</p>

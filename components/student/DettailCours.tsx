@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/accordion"
 import ReactPlayer from "react-player";
 import { images } from "@/constants/images";
-import PaymentForm from "../ paiement/PaymentForm";
+import PaymentForm from "../paiement/PaymentForm";
 
 
 interface SousTitre {

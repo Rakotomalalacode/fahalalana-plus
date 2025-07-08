@@ -42,7 +42,7 @@ export default function FormationsPage() {
             setCours(shuffled);
             setLoading(false);
         };
-
+ 
         fetchCours();
     }, []);
 

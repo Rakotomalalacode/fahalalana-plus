@@ -2,6 +2,7 @@ import Decouvrir from '@/components/Decouvrir/Decouvrir'
 import Footer from '@/components/footer/Footer'
 import NavbarTow from '@/components/headers/headersuser/page'
 import type { Metadata } from 'next'
+import Mobilemenu from '@/components/headers/Mobilemenu'
 
 export const metadata: Metadata = {
   title: 'Falarohy',
@@ -15,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <main>
+      <div className="lg:hidden w-full block">
+        <Mobilemenu />
+      </div>
       <div className="w-full lg:sticky z-50 lg:top-0">
         <NavbarTow />
       </div>

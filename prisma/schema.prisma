@@ -51,12 +51,12 @@ model User {
   updatedAt      DateTime  @updatedAt
   role           Role      @default(student)
 
-  accounts Account[]
-  sessions Session[]
-  reports  Report[]
-  cours    Cours[]
-  busines  Busines[]
-  achatCours AchatCours[]
+  accounts    Account[]
+  sessions    Session[]
+  reports     Report[]
+  cours       Cours[]
+  busines     Busines[]
+  achatCours  AchatCours[]
   progression Progression[]
 }
 
@@ -69,10 +69,13 @@ model VerificationToken {
 }
 
 model Categorie {
-  id        Int      @id @default(autoincrement())
+  id        String    @id @default(cuid())
   nom       String
+  imageUrl  String?  
+  imageId   String?
   usercreat String?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Report {
@@ -86,16 +89,16 @@ model Report {
 }
 
 model Cours {
-  id          String      @id @default(uuid())
+  id          String   @id @default(uuid())
   titre       String
   description String
   imageUrl    String
   publicId    String
   prix        Float
   categorie   String
-  user        User        @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
   userId      String
-  createdAt   DateTime    @default(now())
+  createdAt   DateTime @default(now())
 
   sousTitres  SousTitre[]
   achatCours  AchatCours[]
@@ -126,7 +129,7 @@ model Busines {
   introUrl      String
   introPublicId String
   userId        String
-  lectures    Int      @default(0)
+  lectures      Int      @default(0)
   createdAt     DateTime @default(now())
   user          User     @relation(fields: [userId], references: [id])
 }
@@ -141,12 +144,25 @@ model AchatCours {
 }
 
 model Progression {
-  id        String   @id @default(uuid())
-  userId    String
-  coursId   String
-  videoId   String
-  date      DateTime @default(now())
+  id      String   @id @default(uuid())
+  userId  String
+  coursId String
+  videoId String
+  date    DateTime @default(now())
 
-  user      User     @relation(fields: [userId], references: [id])
-  cours     Cours    @relation(fields: [coursId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+  cours Cours @relation(fields: [coursId], references: [id])
 }
+
+model Video {
+  id                String    @id @default(cuid())
+  title             String
+  description       String
+  videoUrl          String
+  videoPublicId     String
+  thumbnail         String
+  thumbnailPublicId String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+

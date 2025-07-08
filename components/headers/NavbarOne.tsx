@@ -3,22 +3,55 @@
 import Link from "next/link"
 import LogoFalarohy from "../logo"
 import SearchBar from "../search/page"
+import { SignOutButton } from "@/components/sign-out-button"
+import { IconDashboard, IconLogout, IconUsers } from "@tabler/icons-react"
 import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
-import { IconMenuDeep } from "@tabler/icons-react"
-import { images } from "@/constants/images"
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import Image from "next/image"
 import Decouvrir from "../Decouvrir/Decouvrir"
 import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
+import { Icons } from "@/constants/icons"
+import bcrypt from "bcryptjs"
+
+type Pointeur<T> = {
+    value: T
+}
 
 const NavbarOne = () => {
     const route = useRouter()
+    const {data:session , status} = useSession()
+
+         async function continuerDash() {
+            
+            if (session?.user?.role) {
+                const hashMotDePasse = await bcrypt.hash(session.user.role, 10)
+    
+                const role = session.user.role
+    
+                function modifierPointeur(p: Pointeur<string>, role: string) {
+                    if (role === "teacher") {
+                        p.value = "t"
+                    } else if (role === "student") {
+                        p.value = "s"
+                    } else if (role === "admin") {
+                        p.value = "a"
+                    }
+                }
+    
+                const p: Pointeur<string> = { value: "" }
+                modifierPointeur(p, role)
+    
+                route.push(`/dashboard/${p.value}?${hashMotDePasse}${session.user.id}=${session.user.email}`)
+                route.refresh()
+            }
+        }
     return (
         <div className="w-screen lg:backdrop-blur-sm px-4 lg:px-9 py-5 lg:bg-transparent bg-primary-foreground">
             <div className="w-full flex justify-between">
@@ -42,30 +75,35 @@ const NavbarOne = () => {
                 </div>
                 <div className="lg:hidden flex items-center">
                     <SearchBar />
-                    <Sheet>
-                        <SheetTrigger><IconMenuDeep className="text-orangeme" size={40} /></SheetTrigger>
-                        <SheetContent>
-                            <SheetHeader>
-                                <SheetTitle className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
-
-                                    <p>falar</p>
-                                    <Image
-                                        src={images.LogoFalarohy}
-                                        width={200}
-                                        height={200}
-                                        className="w-3 h-3"
-                                        alt={"LogoFalarohy"} />
-                                    <p>hy</p>
-
-                                </SheetTitle>
-                            </SheetHeader>
-                            <SheetDescription className="flex h-[50%] flex-col justify-center items-center gap-12">
-                                <Link href="/formation" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Formations</Link>
-                                <Link href="/bibliotheque" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Bibliothèque</Link>
-                                <Link href="/auth/signin" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Se connecter</Link>
-                            </SheetDescription>
-                        </SheetContent>
-                    </Sheet>
+                    { session ? ( <DropdownMenu>
+                            <DropdownMenuTrigger className="-mt-2">
+                                <div>
+                                    <Image src={session.user.image ? session.user.image : Icons.userdefault} alt="avatar" className="border rounded" width={35} height={35} />
+                                </div>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="mr-6 rounded font-outfit">
+                                <DropdownMenuLabel className="flex w-[200px] gap-2">
+                                    <Image src={session.user.image ? session.user.image : Icons.userdefault} alt="avatar" className="border rounded" width={35} height={35} />
+                                    <div>
+                                        <p>{session.user.name}</p>
+                                        <p className="text-sm text-muted-foreground">{session.user.role}</p>
+                                    </div>
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem onClick={continuerDash}>
+                                <IconDashboard /> {session.user.role} dashboard
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                <Link href={`/instructor?url=${session.user.email}`} target="_blank" className="w-full flex gap-2 items-center" ><IconUsers /> Instructor Dashboard</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>À propos de Falarohy</DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <IconLogout />
+                                    <SignOutButton />
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>) : ""}
                 </div>
             </div>
 

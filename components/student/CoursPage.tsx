@@ -154,6 +154,7 @@ const handleVideoEnd = async () => {
                 ref={videoRef}
                 onEnded={handleVideoEnd}
                 controls
+                controlsList="nodownload"
                 className="w-full rounded-lg shadow-md"
               >
                 <source src={currentVideo.videoUrl} type="video/mp4" />
@@ -255,6 +256,7 @@ const handleVideoEnd = async () => {
                 </Accordion>
                 <ReactPlayer
                   url={video.videoUrl}
+                  controlsList="nodownload"
                   controls
                   width="100%"
                   height="192px"

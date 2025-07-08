@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useSession } from "next-auth/react"
 import { images } from "@/constants/images"
-import { Data, DataStudent } from "@/constants/dashMenu"
+import { Data, DataAdimn, DataStudent } from "@/constants/dashMenu"
 import { user } from "@/types/user"
 import { Icons } from "@/constants/icons"
 import Image from "next/image"
@@ -82,7 +82,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </div>
             );
 
-          } if (loading) {
+          } else if (session?.user?.role === "admin") {
+            return (
+              <div>
+                <NavMain items={DataAdimn.navMain} />
+                <NavDocuments items={DataAdimn.documents} />
+                <NavSecondary items={DataAdimn.navSecondary} className="mt-auto" />
+              </div>
+            );
+          }
+          
+          if (loading) {
             return (
               <div className="flex h-screen justify-center items-center">
                 <div className="animate-spin  flex justify-center items-center rounded-full h-24 w-24">

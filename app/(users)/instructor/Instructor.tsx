@@ -95,7 +95,7 @@ export default function Intructor ({ session }: {session : string}) {
                             </AccordionItem>
                         </Accordion>
                     </div>
-                    <Image src={images.rereer} alt="formation" width={600} height={600} className='lg:w-[50%] object-cover' />
+                    <Image src={images.instructorTow} alt="formation" width={600} height={600} className='lg:w-[50%] object-cover' />
                 </div>
             </div>
         </div>

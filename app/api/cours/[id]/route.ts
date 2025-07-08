@@ -16,12 +16,13 @@ export async function DELETE(
   try {
     const session = await getServerSession(authOptions)
     const params = await context.params
+    const id = params.id
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Non autorisé" }, { status: 401 })
     }
 
     const cours = await prisma.cours.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { sousTitres: true },
     })
 

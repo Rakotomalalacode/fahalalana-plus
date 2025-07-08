@@ -6,7 +6,7 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 import { SidebarProviderCustom } from "../../../components/context/SidebarContext"
-import { ContentManu } from "../../../components/student/contentManu"
+import { ContentManu } from "../../../components/admin/contentManu"
 
 
 export default async function Page() {

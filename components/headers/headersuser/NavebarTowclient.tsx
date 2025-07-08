@@ -86,7 +86,7 @@ const NavebarTowclient = ({ session }: any) => {
                                 </span>
                             )}
                         </Link>
-                        <DropdownMenu>
+                       { session ? ( <DropdownMenu>
                             <DropdownMenuTrigger className="-mt-2">
                                 <div>
                                     <Image src={session.user.image ? session.user.image : Icons.userdefault} alt="avatar" className="border rounded" width={35} height={35} />
@@ -114,7 +114,7 @@ const NavebarTowclient = ({ session }: any) => {
                                     <SignOutButton />
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
-                        </DropdownMenu>
+                        </DropdownMenu>) : ""}
                     </div>
                 </div>
                 <div className="lg:hidden flex  items-center">
@@ -130,30 +130,6 @@ const NavebarTowclient = ({ session }: any) => {
                         
                     <SearchBar />
                     </div>
-                    <Sheet>
-                        <SheetTrigger><IconMenuDeep className="text-orangeme" size={40} /></SheetTrigger>
-                        <SheetContent>
-                            <SheetHeader>
-                                <SheetTitle className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
-
-                                    <p>falar</p>
-                                    <Image
-                                        src={images.LogoFalarohy}
-                                        width={200}
-                                        height={200}
-                                        className="w-3 h-3"
-                                        alt={"LogoFalarohy"} />
-                                    <p>hy</p>
-
-                                </SheetTitle>
-                            </SheetHeader>
-                            <SheetDescription className="flex h-[50%] flex-col justify-center items-center gap-12">
-                                <Link href="/formation" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Formations</Link>
-                                <Link href="/bibliotheque" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Bibliothèque</Link>
-                                <Link href="/panier" className="mt-2 hover:underline text-xl hover:text-orangeme text-black" >Panier</Link>
-                            </SheetDescription>
-                        </SheetContent>
-                    </Sheet>
                 </div>
             </div>
 

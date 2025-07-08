@@ -15,6 +15,7 @@ npm i --save-dev prisma@latest                       │
 #ff413a
 #3366ff
 rgb(0, 207, 213)
+#06141c
 
 
 const categories = [

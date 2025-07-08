@@ -10,5 +10,5 @@ export const images = {
     "téléchargement" : "/images/téléchargement.png",
     "images__1" : "/images/images__1.png",
     "imagesame" : "/images/imagesame.png",
-    "rereer" : "/images/rereer.png",
+    "instructorTow" : "/images/rereer.png",
 }

@@ -61,7 +61,7 @@ const coursBuy = () => {
       <CarouselContent className="lg:p-x4 p-x py-8  ">
         {businesList.map((busines , index) => (
           <CarouselItem key={busines.id} className="md:basis-1/2 relative lg:basis-[335px]">
-            <div className="w-80 space-y-4 hover:bg-primary-foreground shadow border rounded">
+            <div className="lg:w-80 w-[99%] space-y-4 hover:bg-primary-foreground shadow border rounded">
               <Image src={busines.imageUrl} alt={busines.titre} className="w-full rounded-t h-[170px]" width={500} height={500} />
               {index < 5 && (<p className="px-4 absolute top-4 lg:right-4 right-10 py-1 text-green-500 rounded bg-green-100 w-fit h-fit">Nouveau ✨</p>)}
               <div className="space-y-1 px-4">

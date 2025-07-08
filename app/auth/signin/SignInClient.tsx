@@ -142,8 +142,8 @@ export default function SignInClient({ session }: any) {
                 </div>
             ) : (
                 <div className="min-h-screen outfit font-inter flex flex-wrap items-center justify-between bg-gray-50 dark:bg-background *:">
-                    <div className="lg:w-1/3 w-full px-8 space-y-3">
-                        <div className="flex w-fit text-2xl gap-0.5 qualyneue items-center">
+                    <div className="lg:w-1/3 w-full flex flex-col px-8 space-y-3">
+                        <div className="flex w-fit self-center lg:self-start text-2xl gap-0.5 qualyneue items-center">
                             <p>falar</p>
                             <Image
                                 src={images.LogoFalarohy}
@@ -154,11 +154,11 @@ export default function SignInClient({ session }: any) {
                             <p>hy</p>
                         </div>
                         <div>
-                            <h2 className=" text-strat text-3xl font-extrabold ">
+                            <h2 className=" text-center lg:text-start  text-3xl font-extrabold ">
                                 Se connecter
                             </h2>
                         </div>
-                        <div className="text-start">
+                        <div className="text-center lg:text-start ">
                             <Link href="/auth/signup" className="text-gray-600 dark:text-white text-sm hover:text-gray-500">
                                 Vous n'avez pas de compte ? <span className="underline text-black">S'inscrire</span>
                             </Link>

@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import cloudinary from "@/lib/cloudinary"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { v2 as cloudinaryV2 } from "cloudinary"
@@ -8,6 +8,40 @@ import { writeFile } from "fs/promises"
 import { randomUUID } from "crypto"
 
 type Params = Promise<{ id: string }>
+
+
+
+export async function GET(
+  req: NextRequest,
+   context : { params: Params }
+) {
+  //const businesId = context.params
+  const params = await context.params
+
+  try {
+    const cours = await prisma.busines.findUnique({
+      where: { id: params.id },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+    })
+
+    if (!cours) {
+      return NextResponse.json({ error: "Cours introuvable" }, { status: 404 })
+    }
+
+    return NextResponse.json(cours)
+  } catch (error) {
+    console.error("Erreur récupération cours:", error)
+    return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
+  }
+}
+
 
 export async function DELETE(req: Request,  context: { params: Params}) {
     const session = await getServerSession(authOptions)
