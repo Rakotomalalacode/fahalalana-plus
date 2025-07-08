@@ -14,6 +14,7 @@ import { images } from "@/constants/images";
 import { gifs } from "@/constants/gif";
 import { Icons } from "@/constants/icons";
 import { Calendar } from "@/components/ui/calendar"
+import CertificatButton from "@/components/certificates/CertificatButton"
 
 type SousTitre = {
   id: string;
@@ -189,6 +190,11 @@ const handleVideoEnd = async () => {
                 <Image src={Icons.certificate} alt="progress" width={500} height={500} className="w-7 h-7 ml-1.5" />
               </div>
 { progress == 100 ?<Image src={Icons.certyf} alt="progress" width={500} height={500} className="w-24 -ml-2 absolute top-4 z-0 right-4 opacity-75" />: null}
+
+             {cours && progress === 100 && (
+  <CertificatButton coursId={cours.id} />
+)}
+
               <div className="w-full flex justify-center mt-7">
                 <div className="flex  w-fit text-5xl gap-1 qualyneue items-center">
                   <p>falar</p>

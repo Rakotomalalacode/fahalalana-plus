@@ -58,6 +58,7 @@ model User {
   busines     Busines[]
   achatCours  AchatCours[]
   progression Progression[]
+  ertificats  Certificat[]
 }
 
 model VerificationToken {
@@ -103,6 +104,7 @@ model Cours {
   sousTitres  SousTitre[]
   achatCours  AchatCours[]
   progression Progression[]
+  certificats Certificat[]
 }
 
 model SousTitre {
@@ -114,6 +116,7 @@ model SousTitre {
   coursId     String
   createdAt   DateTime @default(now())
   cours       Cours    @relation(fields: [coursId], references: [id])
+  progressions Progression[]
 }
 
 model Busines {
@@ -152,6 +155,7 @@ model Progression {
 
   user  User  @relation(fields: [userId], references: [id])
   cours Cours @relation(fields: [coursId], references: [id])
+  sousTitre SousTitre @relation(fields: [videoId], references: [id])
 }
 
 model Video {
@@ -166,3 +170,14 @@ model Video {
   updatedAt         DateTime @updatedAt
 }
 
+model Certificat {
+  id        String   @id @default(uuid())
+  userId    String
+  coursId   String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  cours     Cours    @relation(fields: [coursId], references: [id])
+
+  @@unique([userId, coursId]) // un seul certificat par utilisateur par cours
+}
