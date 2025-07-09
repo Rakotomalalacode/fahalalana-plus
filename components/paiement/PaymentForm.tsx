@@ -70,12 +70,12 @@ export default function PaymentForm({ cours, stylecl }: { cours: { id: string, t
                         and remove your data from our servers.
                     </DialogDescription> */}
                 </DialogHeader>
-                <div className="w-full mx-auto bg-white p-6 rounded-xl space-y-4">
+                <div className="w-full p-6 rounded space-y-4">
                     <div className="flex justify-between">
                         <p className="text-lg font-medium">{cours.titre}</p>
                         <p className=" ">Prix : <span className="font-bold">{cours.prix.toLocaleString()} Ar</span></p>
                     </div>
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                         <label className="block text-sm font-medium">Numéro de téléphone</label>
                         <Input
                             type="tel"
@@ -99,9 +99,22 @@ export default function PaymentForm({ cours, stylecl }: { cours: { id: string, t
                                 <SelectItem className="rounded" value="airtel">Airtel Money</SelectItem>
                             </SelectContent>
                         </Select>
-                    </div>
-
-                    <Button onClick={handlePayment} disabled={isLoading || !phone} className="w-full rounded">
+                    </div> */}
+<div className="w-full flex justify-between">
+          <p>Remise totale (20%)</p>
+          <p>{((25 * (cours.prix))/100).toLocaleString()} Ar</p>
+        </div>
+        <div  className="w-full flex justify-between bg-white/50 p-3">
+          <p>Montant à payer</p>
+          <p>{((cours.prix) - ((25 * (cours.prix))/100)).toLocaleString()} Ar</p>
+        </div>
+        <div>
+          <p className="text-xl">Modes de paiement</p>
+        </div>
+        <div className="bg-white h-16 w-full"></div>
+                    <Button onClick={handlePayment} 
+                    // disabled={isLoading || !phone} 
+                    className="w-full rounded">
                         {isLoading ? "Traitement..." : "Payer"}
                     </Button>
 

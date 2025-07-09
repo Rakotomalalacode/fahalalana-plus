@@ -5,6 +5,7 @@ import Footer from '@/components/footer/Footer'
 import NavbarOne from '@/components/headers/NavbarOne'
 import Mobilemenu from '@/components/headers/Mobilemenu'
 import type { Metadata } from 'next'
+import ScrollToTopButton from '@/components/autres/ScrollToTopButton'
 
 export const metadata: Metadata = {
   title: 'Falarohy',
@@ -35,6 +36,7 @@ export default function RootLayout({
       <div className='w-full mt-8'>
         <Footer />
       </div>
+      <ScrollToTopButton />
     </main>
     </SidebarProviderCustom>
   )

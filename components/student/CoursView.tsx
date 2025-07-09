@@ -6,7 +6,7 @@ import { IconChevronsRight } from "@tabler/icons-react";
 import { useSidebar } from "../context/SidebarContext";
 import { gifs } from "@/constants/gif";
 import { Icons } from "@/constants/icons";
-import { User } from "lucide-react";
+import { User ,Loader } from "lucide-react";
 
 type CoursAvecProgression = {
   coursId: string;
@@ -77,7 +77,11 @@ export default function CoursPage() {
     setCurrentMenu("cours")
   }
 
-  if (loading) return <p>Chargement...</p>;
+  if (loading) return (
+      <div className="flex w-ful h-screen justify-center items-center">
+            <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
+        </div>
+  );
 
   if (mesCours.length === 0)
     return <p className="text-gray-500">Vous n'avez encore acheté aucun cours.</p>;

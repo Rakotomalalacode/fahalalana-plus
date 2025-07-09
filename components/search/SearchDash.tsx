@@ -8,7 +8,7 @@ import {
   FolderPlusIcon,
   SearchIcon,
 } from "lucide-react"
-
+import { useRouter } from "next/navigation"
 import {
   CommandDialog,
   CommandEmpty,
@@ -35,6 +35,7 @@ export default function SearchDash() {
   const [cours, setCours] = React.useState<ResultItem[]>([])
   const [busines, setBusines] = React.useState<ResultItem[]>([])
   const [loading, setLoading] = React.useState(false)
+const router = useRouter()
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -74,6 +75,14 @@ export default function SearchDash() {
       setLoading(false)
     }
   }
+   const handleClick = (type: string, id: string) => {
+    setOpen(false)
+    if (type === "cours") {
+      window.open(`/detail-cours/${id}`, "_blank", "noopener,noreferrer")
+    } else {
+      window.open(`/detaille-cours/${id}`, "_blank", "noopener,noreferrer")
+    }
+  }
 
   return (
     <>
@@ -109,7 +118,7 @@ export default function SearchDash() {
                   {cours.length > 0 && (
                     <CommandGroup heading="Cours">
                       {cours.map((item) => (
-                        <CommandItem key={`cours-${item.id}`}>
+                        <CommandItem onSelect={() => handleClick("cours", item.id)} key={`cours-${item.id}`}>
                           <img
                             src={item.imageUrl}
                             alt={item.titre}
@@ -124,7 +133,7 @@ export default function SearchDash() {
                   {busines.length > 0 && (
                     <CommandGroup heading="Business">
                       {busines.map((item) => (
-                        <CommandItem key={`busines-${item.id}`}>
+                        <CommandItem onSelect={() => handleClick("busines", item.id)} key={`busines-${item.id}`}>
                           <img
                             src={item.imageUrl}
                             alt={item.titre}

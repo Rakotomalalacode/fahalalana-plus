@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { CalendarArrowDown, Loader2, Timer } from "lucide-react"
+import { CalendarArrowDown, Loader, Timer } from "lucide-react"
 import { useSidebar } from "../context/SidebarContext";
 
 
@@ -53,7 +53,7 @@ export default function FormationsPage() {
 
     if (loading) return (
         <div className="flex w-ful h-screen justify-center items-center">
-            <Loader2 className="animate-spin h-8 w-8 text-muted-foreground" />
+            <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
         </div>
     )
 

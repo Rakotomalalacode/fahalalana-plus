@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { SquarePen, X, AlertCircleIcon, ImageIcon, UploadIcon, XIcon, Loader2 } from "lucide-react"
+import { SquarePen, X, AlertCircleIcon, ImageIcon, UploadIcon, XIcon, Loader } from "lucide-react"
 import Image from "next/image"
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { useSidebar } from "../ui/sidebar"
@@ -167,7 +167,7 @@ const CoursEdits = ({ cours }: Cours) => {
     if (loading) {
         return (
             <div className="flex w-ful h-full justify-center items-center">
-                <Loader2 className="animate-spin h-8 w-8 text-muted-foreground" />
+                <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
             </div>
         )
     }

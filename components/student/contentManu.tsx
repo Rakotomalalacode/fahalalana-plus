@@ -8,6 +8,7 @@ import FormationsPage from "./FormationsPage"
 import DettailCours from "./DettailCours"
 import CoursView from "./CoursView"
 import ChatPage from "../chat/ChatPage"
+import AnalyticsPage from "./AnalyticsPage"
 
 export function ContentManu() {
   const { currentMenu, selectedCours } = useSidebar()
@@ -16,7 +17,7 @@ const views: Record<string, React.ReactNode> = {
   listcours: <CoursView />,
   cours:  selectedCours ? ( <CoursPage coursCible={selectedCours} /> ) : ( <p className="p-4 text-red-500">Aucun cours sélectionné.</p> ),
   formations: <FormationsPage />,
-  analytics: <p>page analytics</p>,
+  analytics: <AnalyticsPage />,
   rapports: <Rapports />,
   dettailcours: selectedCours ? ( <DettailCours coursCible={selectedCours} /> ) : ( <p className="p-4 text-red-500">Aucun cours sélectionné.</p> ),
   chat: <ChatPage />

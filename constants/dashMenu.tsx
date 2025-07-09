@@ -33,11 +33,11 @@ export const DataAdimn = {
       key: "cours",
       icon: IconSquarePlus,
     },
-    {
-      title: "Équipe",
-      key: "equipe",
-      icon: IconUsers,
-    },
+    // {
+    //   title: "Équipe",
+    //   key: "equipe",
+    //   icon: IconUsers,
+    // },
   ],
   navSecondary: [
     {
@@ -81,11 +81,11 @@ export const Data = {
       key: "cours",
       icon: IconFolder,
     },
-    {
-      title: "Équipe",
-      key: "equipe",
-      icon: IconUsers,
-    },
+    // {
+    //   title: "Équipe",
+    //   key: "equipe",
+    //   icon: IconUsers,
+    // },
   ],
   navSecondary: [
     {

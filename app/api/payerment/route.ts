@@ -64,3 +64,46 @@ export async function GET() {
     );
   }
 }
+
+export async function DELETE(req: Request) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  const { coursId } = await req.json();
+
+  if (!coursId) {
+    return NextResponse.json({ error: "coursId requis" }, { status: 400 });
+  }
+
+  try {
+    const achat = await prisma.achatCours.findFirst({
+      where: {
+        userId: session.user.id,
+        coursId,
+      },
+    });
+
+    if (!achat) {
+      return NextResponse.json(
+        { error: "Achat introuvable" },
+        { status: 404 }
+      );
+    }
+
+    await prisma.achatCours.delete({
+      where: {
+        id: achat.id,
+      },
+    });
+
+    return NextResponse.json({ message: "Achat supprimé avec succès" });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Erreur lors de la suppression de l'achat" },
+      { status: 500 }
+    );
+  }
+}

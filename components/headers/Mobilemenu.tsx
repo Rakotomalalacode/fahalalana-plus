@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Menu } from "lucide-react"
 const Mobilemenu = () => {
     return (
-        <div className="w-full px-4 bg-orangeme text-white items-center">
+        <div className="w-full px-4 bg-orangeme font-outfit text-white items-center">
             <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
     <AccordionTrigger>

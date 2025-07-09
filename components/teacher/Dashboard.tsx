@@ -21,7 +21,7 @@ import {
     PieChart, Pie, Sector, ResponsiveContainer, Cell, Legend
 } from 'recharts'
 import { useState } from 'react'
-
+import { Loader } from "lucide-react"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
@@ -124,8 +124,16 @@ function CustomProgressionPieChart({ value }: { value: number }) {
 const Dashboard = () => {
     const { data, error, isLoading } = useSWR('/api/analytics', fetcher)
 
-    if (isLoading) return <p>Chargement...</p>
-    if (error) return <p>chargement....</p>
+    if (isLoading) return (
+        <div className="flex w-ful h-screen justify-center items-center">
+            <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
+        </div>
+    )
+    if (error) return (
+        <div className="flex w-ful h-screen justify-center items-center">
+            <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
+        </div>
+    )
 
     return (
         <div className="space-y-4">

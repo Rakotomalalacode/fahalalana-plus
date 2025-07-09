@@ -117,9 +117,9 @@ export default function SignInClient({ session }: any) {
                                 <p>falar</p>
                                 <Image
                                     src={images.LogoFalarohy}
-                                    width={200}
-                                    height={200}
-                                    className="w-7 h-7"
+                                    width={500}
+                                    height={500}
+                                    className="w-7 h-7 object-cover"
                                     alt={"LogoFalarohy"} />
                                 <p>hy</p>
                             </div>

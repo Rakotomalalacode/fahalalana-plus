@@ -11,4 +11,9 @@ export const images = {
     "images__1" : "/images/images__1.png",
     "imagesame" : "/images/imagesame.png",
     "instructorTow" : "/images/rereer.png",
+    "qrcode" : "/images/qr-code.svg",
+    "applicationdesclinux" : "/images/linux_6124995.png",
+    "applicationdescandroid" : "/images/logo_11378763.png",
+    "applicationdescpngegg" : "/images/pngegg.png",
+    "applicationdescwindows" : "/images/windows_2374606.png",
 }

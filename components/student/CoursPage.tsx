@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Loader } from "lucide-react"
 import {
   Accordion,
   AccordionContent,
@@ -135,11 +136,43 @@ const handleVideoEnd = async () => {
     }));
   };
 
+
+const handleDelete = async (id : string) => {
+  const confirm = window.confirm("Êtes-vous sûr de vouloir supprimer ce cours de vos achats ?");
+  if (!confirm) return;
+
+  try {
+    const res = await fetch("/api/payerment", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ coursId: id }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Erreur lors de la suppression.");
+    } else {
+      alert("Cours supprimé avec succès.");
+      // Redirection ou rechargement possible ici
+      window.location.reload();
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Erreur serveur.");
+  }
+};
+
   const totalSeconds = Object.values(durations).reduce((acc, curr) => acc + curr, 0);
   const totalDurationFormatted = formatSecondsToMinSec(totalSeconds);
 
 
-  if (loading) return <p className="text-center mt-10">Chargement...</p>;
+  if (loading) return (
+    <div className="flex w-ful h-screen justify-center items-center">
+            <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
+        </div>
+  );
   if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
   if (!cours) return <p>Aucun cours trouvé.</p>;
 
@@ -172,8 +205,8 @@ const handleVideoEnd = async () => {
           ) : (
             <p>Pas de vidéo disponible.</p>
           )}
-          <div className="w-full relative lg:flex justify-between">
-            <div className="space-y-3 w-full lg:w-[57%] p-7 bg-accent rounded-lg">
+          <div className="w-full  lg:flex justify-between">
+            <div className="space-y-3 relative w-full lg:w-[57%] p-7 bg-accent rounded-lg">
               <h1 className="text-2xl font-medium">Progression</h1>
               <p className="text-gray-700 text-sm">Terminez votre formation à 100% afin d'obtenir votre certification de fin de formation <span className="qualyneue text-orangeme">falorohy</span>.</p>
               <div className=" text-sm font-medium text-blue-600">
@@ -194,6 +227,13 @@ const handleVideoEnd = async () => {
              {cours && progress === 100 && (
   <CertificatButton coursId={cours.id} />
 )}
+{cours && (
+<button
+  onClick={() => handleDelete(cours.id)}
+  className="group relative w-full  flex justify-center py-3 text-center border border-red-600 text-lg font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer disabled:opacity-50"
+>
+  Supprimer ce cours
+</button>)}
 
               <div className="w-full flex justify-center mt-7">
                 <div className="flex  w-fit text-5xl gap-1 qualyneue items-center">

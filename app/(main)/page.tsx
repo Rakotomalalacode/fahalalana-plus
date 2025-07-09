@@ -174,6 +174,9 @@ if (status !== "authenticated") {
                     <CoursBuy />
                 </div>
             </div>
+            <div className="w-[95%] m-auto mb-9">
+            <InstructorComp />
+            </div>
         </main>
     );
 }

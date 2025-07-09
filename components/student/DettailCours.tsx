@@ -1,7 +1,7 @@
 "use client";
 
 import { IconBook, IconCircleDashedCheck, IconDevicesDollar, IconSettingsDown } from "@tabler/icons-react";
-import { Loader2, Timer, User } from "lucide-react";
+import { Loader, Timer, User } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import {
@@ -72,6 +72,8 @@ export default function DettailCours({ coursCible }: { coursCible: string }) {
     }));
   };
 
+
+
   const totalSeconds = Object.values(durations).reduce((acc, curr) => acc + curr, 0);
   const totalDurationFormatted = formatSecondsToMinSec(totalSeconds);
 
@@ -79,7 +81,7 @@ export default function DettailCours({ coursCible }: { coursCible: string }) {
 
   if (loading) return (
     <div className="flex w-ful h-screen justify-center items-center">
-      <Loader2 className="animate-spin h-8 w-8 text-muted-foreground" />
+      <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
     </div>
   )
   if (!cours) return <p>Erreur : cours introuvable</p>;
@@ -201,7 +203,9 @@ export default function DettailCours({ coursCible }: { coursCible: string }) {
                 </div>
               )}
             </div>
-            <PaymentForm stylecl="group relative w-full lg:w-fit flex justify-center py-3 lg:px-16 border border-transparent text-lg font-medium rounded-lg  bg-white hover:bg-gray-400 shadow-2xl focus:outline-none  cursor-pointer disabled:opacity-50" cours={cours} />
+
+
+            <PaymentForm stylecl="group relative w-full lg:w-fit flex justify-center py-3 lg:px-16 border border-transparent text-lg font-medium rounded-lg  bg-white hover:bg-gray-400 shadow-2xl focus:outline-none  cursor-pointer dark:text-black disabled:opacity-50" cours={cours} />
           </div>
         </div>
       </div>

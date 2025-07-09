@@ -6,6 +6,9 @@ import { AddToCartButton } from "@/components/coursBuy/AddToCartButton"
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import {IconLoader} from "@tabler/icons-react"
+import JSZip from "jszip"
+import { saveAs } from "file-saver" // pour déclencher le téléchargement
+
 
 type BusinesType = {
   id: string
@@ -47,23 +50,66 @@ export default function BusinesDetailPage() {
     fetchCours()
   }, [id])
 
-  const handleAchat = async () => {
-    if (!id) return
-    try {
-      const res = await fetch(`/api/busines/${id}/lecture`, {
-        method: "POST"
-      })
-      if (res.ok) {
-        alert("Lecture enregistrée avec succès !")
-        router.refresh()
-      } else {
-        const data = await res.json()
-        alert(data.error || "Erreur")
-      }
-    } catch (error) {
-      alert("Erreur réseau")
+  // const handleAchat = async () => {
+  //   if (!id) return
+  //   try {
+  //     const res = await fetch(`/api/busines/${id}/lecture`, {
+  //       method: "POST"
+  //     })
+  //     if (res.ok) {
+  //       alert("Lecture enregistrée avec succès !")
+  //       router.refresh()
+  //     } else {
+  //       const data = await res.json()
+  //       alert(data.error || "Erreur")
+  //     }
+  //   } catch (error) {
+  //     alert("Erreur réseau")
+  //   }
+  // }
+
+  
+const handleAchat = async () => {
+  if (!id || !cours) return
+
+  try {
+    // 1. Incrémente lecture
+    const res = await fetch(`/api/busines/${id}/lecture`, {
+      method: "POST"
+    })
+    if (!res.ok) {
+      const data = await res.json()
+      alert(data.error || "Erreur lors de l'achat")
+      return
     }
+
+    // 2. Téléchargement des fichiers binaires
+    const urlsToDownload = [
+      { url: cours.zipUrl, name: "contenu.zip" },
+      { url: cours.imageUrl, name: "image.jpg" },
+      { url: cours.introUrl, name: "intro.mp4" }
+    ]
+
+    const zip = new JSZip()
+
+    for (const file of urlsToDownload) {
+      const response = await fetch(file.url)
+      const blob = await response.blob()
+      zip.file(file.name, blob)
+    }
+
+    // 3. Génération et téléchargement du ZIP
+    const zipBlob = await zip.generateAsync({ type: "blob" })
+    saveAs(zipBlob, `${cours.titre}.zip`)
+
+    router.refresh()
+
+  } catch (error) {
+    console.error("Erreur pendant le téléchargement groupé :", error)
+    alert("Erreur pendant l'achat ou le téléchargement.")
   }
+}
+ 
 
   if (loading) return <div className="h-[500px] flex justify-center items-center"><IconLoader className="animate-spin h-8 w-8 text-muted-foreground" /></div>
   if (!cours) return <div className="h-[500px] flex justify-center items-center"><IconLoader className="animate-spin h-8 w-8 text-muted-foreground" /></div>
@@ -135,3 +181,7 @@ export default function BusinesDetailPage() {
     </div>
   )
 }
+
+
+
+

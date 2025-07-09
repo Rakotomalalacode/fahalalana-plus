@@ -11,7 +11,7 @@ export default function CertificatButton({ coursId }: { coursId: string }) {
   return (
     <button
       onClick={telecharger}
-      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+      className="group relative w-full  flex justify-center py-3 text-center border border-transparent text-lg font-medium rounded-lg  bg-green-500 hover:bg-green-400 shadow-2xl focus:outline-none  cursor-pointer disabled:opacity-50"
     >
       Télécharger mon certificat
     </button>

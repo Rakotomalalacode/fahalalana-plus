@@ -29,6 +29,7 @@ import { IconCircleDashedCheck, IconTrash } from "@tabler/icons-react"
 import { toast } from "sonner"
 import BuinsesEdit from "./BuinsesEdit"
 import { images } from "@/constants/images"
+import { Loader } from "lucide-react"
 
 type Cours = {
   id: string
@@ -121,7 +122,7 @@ export function ListeCours() {
   if (loading) {
     return (
       <div className="flex justify-center items-center animate-pulse py-10 rounded-lg border shadow-md h-full md:min-w-[450px] bg-gray-200 dark:bg-sidebar-accent">
-        {/* <Loader2 className="animate-spin h-8 w-8 text-red-500" /> */}
+       <Loader className="animate-spin h-8 w-8 text-red-500" /> 
       </div>
     )
   }
