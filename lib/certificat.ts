@@ -1,55 +1,59 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib"
+import { PDFDocument, rgb } from "pdf-lib"
 import { readFileSync } from "fs"
 import path from "path"
+
 
 export async function generateCertificatPDF({
   nomUtilisateur,
   titreCours,
+  nomInstructeur,
 }: {
   nomUtilisateur: string
   titreCours: string
+  nomInstructeur: string
 }) {
-  // Chemin du template dans /certificates/template.pdf
-  const templatePath = path.resolve("certificates", "template.pdf")
+ const templatePath = path.resolve("certificates", "template.pdf")
   const templateBytes = readFileSync(templatePath)
 
   const pdfDoc = await PDFDocument.load(templateBytes)
+
   const pages = pdfDoc.getPages()
   const firstPage = pages[0]
 
-  const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
-  const { height } = firstPage.getSize()
+  const { width, height } = firstPage.getSize()
+  const helvetica = await pdfDoc.embedFont("Helvetica-Bold")
 
   firstPage.drawText(nomUtilisateur, {
-    x: 200,
-    y: height - 160,
+    x: width / 2 - nomUtilisateur.length * 4.5,
+    y: height - 300,
     size: 18,
-    font,
+    font : helvetica,
     color: rgb(0.2, 0.2, 0.2),
   })
 
   firstPage.drawText(titreCours, {
-    x: 200,
-    y: height - 200,
+    x: width / 2 - titreCours.length * 4,
+    y: height - 395,
     size: 14,
-    font,
+    font : helvetica,
     color: rgb(0.3, 0.3, 0.3),
   })
 
-  firstPage.drawText(`Délivré le ${new Date().toLocaleDateString()}`, {
-    x: 200,
-    y: height - 240,
-    size: 12,
-    font,
-    color: rgb(0.5, 0.5, 0.5),
+  firstPage.drawText(nomInstructeur, {
+    x: 270,
+    y: 85,
+    size: 14,
+    font : helvetica,
+    color: rgb(0.2, 0.2, 0.2),
   })
 
-  firstPage.drawText("Signature : _________", {
-    x: 200,
-    y: height - 280,
+  const date = new Date().toLocaleDateString()
+  firstPage.drawText(date, {
+    x: width - 150,
+    y: 41,
     size: 12,
-    font,
-    color: rgb(0.1, 0.1, 0.1),
+    font : helvetica,
+    color: rgb(0.5, 0.5, 0.5),
   })
 
   const pdfBytes = await pdfDoc.save()
