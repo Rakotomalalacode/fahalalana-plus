@@ -58,7 +58,7 @@ export default function SignUp() {
 
   return (
     <div className="h-screen outfit flex flex-wrap items-center justify-between bg-gray-50 dark:bg-background">
-      <div className="lg:w-1/3 w-full flex flex-col  px-8 space-y-3">
+      <div className="lg:w-1/3 w-full flex flex-col  px-8 space-y-3 bg-[url(/images/fdfdfd.png)] bg-cover bg-no-repeat">
         <div className="flex w-fit text-2xl gap-0.5 self-center lg:self-start qualyneue items-center">
           <p>falar</p>
           <Image
@@ -161,7 +161,7 @@ export default function SignUp() {
           )}
         </div>
       </div>
-      <div className="bg-orange-500 h-screen  hidden lg:block w-2/3">
+      <div className="bg-[url(/images/Thumbnail.png)] bg-cover bg-no-repeat h-screen  hidden lg:block w-2/3">
 
       </div>
     </div>

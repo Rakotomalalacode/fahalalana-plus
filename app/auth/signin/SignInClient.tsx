@@ -141,8 +141,8 @@ export default function SignInClient({ session }: any) {
                     </div>
                 </div>
             ) : (
-                <div className="min-h-screen outfit font-inter flex flex-wrap items-center justify-between bg-gray-50 dark:bg-background *:">
-                    <div className="lg:w-1/3 w-full flex flex-col px-8 space-y-3">
+                <div className="min-h-screen outfit font-inter flex flex-wrap items-center justify-between">
+                    <div className="lg:w-1/3 w-full flex flex-col px-8 space-y-3 bg-[url(/images/fdfdfd.png)] bg-cover bg-no-repeat">
                         <div className="flex w-fit self-center lg:self-start text-2xl gap-0.5 qualyneue items-center">
                             <p>falar</p>
                             <Image
@@ -213,7 +213,7 @@ export default function SignInClient({ session }: any) {
                                         <div className="w-full border-t border-gray-300" />
                                     </div>
                                     <div className="relative flex justify-center text-sm">
-                                        <span className="px-2 bg-gray-50 dark:bg-background text-gray-500 dark:text-white">Ou continuez avec</span>
+                                        <span className="px-2 bg-white dark:bg-background text-gray-500 dark:text-white">Ou continuez avec</span>
                                     </div>
                                 </div>
 
@@ -253,7 +253,7 @@ export default function SignInClient({ session }: any) {
                             )}
                         </div>
                     </div>
-                    <div className="h-screen bg-orange-500 hidden lg:flex justify-end w-2/3">
+                    <div className="h-screen bg-[url(/images/Thumbnail.png)] bg-cover bg-no-repeat hidden lg:flex justify-end w-2/3">
 
                     </div>
                 </div>

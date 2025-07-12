@@ -53,21 +53,21 @@ export default function ChatPage() {
       })
 
       const data = await res.json()
-      console.log("💬 Réponse reçue du serveur :", data)
+      console.log("Réponse reçue du serveur :", data)
 
       if (!data.result) {
         setMessages([
           ...newMessages,
-          { role: "assistant", content: "❌ Aucune réponse reçue depuis Mistral." },
+          { role: "assistant", content: "Aucune réponse reçue depuis Mistral." },
         ])
       } else {
         setMessages([...newMessages, { role: "assistant", content: data.result }])
       }
     } catch (err) {
-      console.error("❌ Erreur:", err)
+      console.error("Erreur:", err)
       setMessages([
         ...newMessages,
-        { role: "assistant", content: "❌ Erreur lors de la réponse." },
+        { role: "assistant", content: "Erreur lors de la réponse." },
       ])
     } finally {
       setLoading(false)
