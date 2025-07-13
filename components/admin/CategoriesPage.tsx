@@ -154,7 +154,7 @@ export function CategoriesPage() {
    }
  
    return (
-     <form onSubmit={handleSubmit} className="space-y-4 w-full font-outfit">
+     <form onSubmit={handleSubmit} className="space-y-4 px-4 lg:px-0 w-full font-outfit">
        <input
          type="text"
          placeholder="Nom de la catégorie"

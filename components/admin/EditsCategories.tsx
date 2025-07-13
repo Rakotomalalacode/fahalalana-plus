@@ -77,8 +77,8 @@ export default function EditCategoriePage({ CategoriesID }: { CategoriesID:strin
   <DialogContent className='rounded'>
     <DialogHeader>
       <DialogTitle className='font-outfit text-center'>Modifier le catégorie {nom}</DialogTitle>
-          <div className="w-full font-outfit">
-      <form onSubmit={handleSubmit} className="space-y-4">
+         </DialogHeader>
+      <form onSubmit={handleSubmit} className="w-full space-y-4">
         <div className='flex flex-col gap-3'>
           <label className="block font-medium">Nom</label>
           <Input
@@ -104,8 +104,7 @@ export default function EditCategoriePage({ CategoriesID }: { CategoriesID:strin
           {loading ? 'Mise à jour...' : 'Mettre à jour'}
         </button>
       </form>
-    </div>
-    </DialogHeader>
+
     <div className='w-full flex justify-center'>
       <div className="flex w-fit text-sm! gap-0.5 qualyneue items-center">
                 <p>falar</p>

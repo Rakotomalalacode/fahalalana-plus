@@ -136,7 +136,7 @@ function VideoUploadPage({ className }: React.ComponentProps<"form">) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="font-outfit w-full space-y-6" >
+    <form onSubmit={handleSubmit} className="font-outfit w-full px-4 lg:px-0 space-y-6" >
       <div className="flex flex-wrap justify-between w-full">
         <div
           role="button"
