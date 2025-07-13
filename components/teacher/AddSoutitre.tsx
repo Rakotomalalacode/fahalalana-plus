@@ -13,29 +13,6 @@ import { toast } from "sonner"
 import { IconCircleDashedCheck } from '@tabler/icons-react'
 import { Textarea } from '../ui/textarea'
 
-// const initialFiles = [
-//     {
-//         name: "image-01.jpg",
-//         size: 1528737,
-//         type: "image/jpeg",
-//         url: "https://picsum.photos/1000/800?grayscale&random=1",
-//         id: "image-01-123456789",
-//     },
-//     {
-//         name: "image-02.jpg",
-//         size: 2345678,
-//         type: "image/jpeg",
-//         url: "https://picsum.photos/1000/800?grayscale&random=2",
-//         id: "image-02-123456789",
-//     },
-//     {
-//         name: "image-03.jpg",
-//         size: 3456789,
-//         type: "image/jpeg",
-//         url: "https://picsum.photos/1000/800?grayscale&random=3",
-//         id: "image-03-123456789",
-//     },
-// ]
 const AddSoutitre = ({ coursId }: { coursId: string }) => {
     const [sousTitre, setSousTitre] = useState("")
     const [sousDescription, setSousDescription] = useState("")

@@ -104,26 +104,3 @@ export async function GET() {
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
   }
 }
-
-
-// export async function GET() {
-//   try {
-//     const cours = await prisma.busines.findMany({
-//       orderBy: { createdAt: "desc" },
-//       select: {
-//         id: true,
-//         titre: true,
-//         prix: true,
-//         categorie: true,
-//         imageUrl: true,
-//         createdAt :true,
-//         description: true
-//       },
-//     })
-
-//     return NextResponse.json(cours)
-//   } catch (error) {
-//     console.error("Erreur chargement busines:", error)
-//     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
-//   }
-// }

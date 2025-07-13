@@ -65,26 +65,3 @@ export async function DELETE(
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
   }
 }
-
-
-// export async function DELETE(
-//   req: Request,
-//   context: { params: { coursId: string } }
-// ) {
-//   const { coursId } = context.params;
-
-//   if (!coursId) {
-//     return NextResponse.json({ error: "ID manquant" }, { status: 400 })
-//   }
-
-//   try {
-//     await prisma.sousTitre.delete({
-//       where: { id: coursId },
-//     })
-
-//     return NextResponse.json({ message: "Sous-titre supprimé" })
-//   } catch (error) {
-//     console.error("Erreur suppression:", error)
-//     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
-//   }
-// }

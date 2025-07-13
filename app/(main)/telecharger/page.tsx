@@ -36,11 +36,11 @@ export default function TelechargerPage() {
         >
           Télécharger pour {os.charAt(0).toUpperCase() + os.slice(1)}
         </Link>
-      )}
+      )} 
 
       <p className="text-gray-500 mt-6">Ou choisissez manuellement :</p>
 
-      <div className="flex flex-wrap space-x-16 mt-6 space-y-10">
+      <div className="grid grid-cols-2 lg:grid-cols-5 pt-10 gap-10">
         <Link href={links.android} className="text-blue-500 space-y-5 bg-sidebar-accent p-4 felx flex-col justify-center items-center text-center w-32 rounded underline">
             <p>Android</p>
             <Image src={images.applicationdescandroid} alt="formation" className="h-20 w-20 self-center object-cover" width={100} height={100} />

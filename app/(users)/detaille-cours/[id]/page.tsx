@@ -50,23 +50,6 @@ export default function BusinesDetailPage() {
     fetchCours()
   }, [id])
 
-  // const handleAchat = async () => {
-  //   if (!id) return
-  //   try {
-  //     const res = await fetch(`/api/busines/${id}/lecture`, {
-  //       method: "POST"
-  //     })
-  //     if (res.ok) {
-  //       alert("Lecture enregistrée avec succès !")
-  //       router.refresh()
-  //     } else {
-  //       const data = await res.json()
-  //       alert(data.error || "Erreur")
-  //     }
-  //   } catch (error) {
-  //     alert("Erreur réseau")
-  //   }
-  // }
 
   
 const handleAchat = async () => {

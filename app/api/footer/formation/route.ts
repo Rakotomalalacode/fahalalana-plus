@@ -27,7 +27,6 @@ export async function GET() {
       },
     })
 
-    console.log("Top cours trouvés :", topCours)
     return NextResponse.json(topCours)
   } catch (error) {
     console.error("Erreur top cours :", error)

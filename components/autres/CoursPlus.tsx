@@ -50,14 +50,6 @@ const CoursPlus = ({ cours }: Props) => {
                 {cours.description}
               </DialogDescription>
             </DialogHeader>
-
-            {/* <div className="mt-6 flex justify-end">
-              <DialogClose asChild>
-                <button className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-                  Fermer
-                </button>
-              </DialogClose>
-            </div> */}
           </div>
         </div>
       </DialogContent>

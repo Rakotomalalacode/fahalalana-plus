@@ -105,8 +105,6 @@ const AdminDashboard: React.FC = () => {
 
   const COLORS: string[] = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#00C49F'];
 
- // const StatCard: React.FC<StatCardProps> = ({ title, value, icon: Icon, color, subtitle }) => (
-    // <div className="bg-white p-6 rounded-lg shadow-md border-l-4" style={{ borderLeftColor: color }}>
      const StatCard: React.FC<StatCardProps> = ({ title, value, icon: Icon, color, subtitle, bgColor }) => (
   <div className={` p-6 rounded-lg text-white`} style={{ backgroundColor: bgColor }}>
      <div className="flex items-center justify-between">
@@ -255,7 +253,7 @@ const AdminDashboard: React.FC = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">{user.name || 'Utilisateur'}</p>
-                      <p className="text-sm text-gray-500">{user.email}</p>
+                      <p className="text-sm hidden lg:block text-gray-500">{user.email}</p>
                     </div>
                   </div>
                   <div className="text-right">
