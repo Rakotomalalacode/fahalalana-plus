@@ -60,7 +60,6 @@ export default function SearchBar() {
           role="button"
           className="bg-transparent text-foreground  placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 py-2 text-sm transition-[color,box-shadow] outline-none focus-visible:ring-[3px]"
           onClick={() => setOpen(true)}
-          onClick={() => setOpen(true)}
         >
           <span className="flex grow items-center">
             <span className="font-outfit">Recherchez</span>
