@@ -231,8 +231,8 @@ const AdminDashboard: React.FC = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold">{cours.prix}€</p>
-                    <p className="text-sm text-green-600">{cours.revenus}€ total</p>
+                    <p className="font-semibold">{cours.prix} Ar</p>
+                    <p className="text-sm text-green-600">{cours.revenus}Ar total</p>
                   </div>
                 </div>
               ))}

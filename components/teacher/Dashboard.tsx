@@ -143,21 +143,21 @@ const Dashboard = () => {
                 <Card className="bg-[#3366ff] border-none text-white shadow-none">
                     <CardContent className="p-4">
                         <p className="text-lg flex gap-2"><IconCertificate /> Cours créés</p>
-                        <p className="text-2xl font-semibold">{data.totalCours - 1} +</p>
+                        <p className="text-2xl font-semibold">{data.totalCours} +</p>
                     </CardContent>
                 </Card>
 
                 <Card className="bg-[#f4a100] border-none text-white shadow-none">
                     <CardContent className="p-4 ">
                         <p className="text-lg flex gap-2"><IconCoins /> Achats de cours</p>
-                        <p className="text-2xl font-semibold">{data.totalAchats - 1} +</p>
+                        <p className="text-2xl font-semibold">{data.totalAchats} +</p>
                     </CardContent>
                 </Card>
 
                 <Card className="bg-[#00ac69] border-none text-white shadow-none">
                     <CardContent className="p-4">
                         <p className="text-lg flex gap-2"><IconDeviceTv /> Vidéos vues</p>
-                        <p className="text-2xl font-semibold">{data.totalProgressions - 1} +</p>
+                        <p className="text-2xl font-semibold">{data.totalProgressions} +</p>
                     </CardContent>
                 </Card>
             </div>

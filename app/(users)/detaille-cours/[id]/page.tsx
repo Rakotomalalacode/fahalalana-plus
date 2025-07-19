@@ -6,6 +6,7 @@ import { AddToCartButton } from "@/components/coursBuy/AddToCartButton"
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import {IconLoader} from "@tabler/icons-react"
+import AdhesionComp from "@/components/autres/AdhesionComp"
 import JSZip from "jszip"
 import { saveAs } from "file-saver" // pour déclencher le téléchargement
 
@@ -56,7 +57,7 @@ const handleAchat = async () => {
   if (!id || !cours) return
 
   try {
-    // 1. Incrémente lecture
+    // 1. Incrémente lecture 
     const res = await fetch(`/api/busines/${id}/lecture`, {
       method: "POST"
     })
@@ -98,6 +99,7 @@ const handleAchat = async () => {
   if (!cours) return <div className="h-[500px] flex justify-center items-center"><IconLoader className="animate-spin h-8 w-8 text-muted-foreground" /></div>
 
   return (
+  <div>
     <div className="w-full  h-fit lg:h-[500px] bg-[url(/images/bg-continue.png)] bg-cover font-outfit">
       <div className="bg-black/80 flex flex-wrap justify-between px-4 lg:px-9 py-9 w-full h-full">
         <div className="flex flex-col lg:self-center h-fit gap-4 w-full lg:w-[45%] text-white">
@@ -162,6 +164,10 @@ const handleAchat = async () => {
         </div>
       </div>
     </div>
+     <div className="w-[95%] font-outfit m-auto my-9">
+        <AdhesionComp />
+      </div>
+  </div>
   )
 }
 

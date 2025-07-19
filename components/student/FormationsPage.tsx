@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { CalendarArrowDown, Loader, Timer } from "lucide-react"
+import { CalendarArrowDown, Loader, User } from "lucide-react"
 import { useSidebar } from "../context/SidebarContext";
 
 
@@ -80,7 +80,7 @@ export default function FormationsPage() {
                         </div>
                         <div className="flex gap-5 text-sm">
                             <p className="flex gap-2 items-center"><CalendarArrowDown size={16} />{new Date(cours.createdAt).toLocaleDateString("fr-FR")}</p>
-                            <p className="flex gap-2 items-center"><Timer size={16} />100 heures</p>
+                            <p className="flex gap-2 items-center"><User size={16} />{cours.user.name}</p>
                         </div>
                     </div>
                 ))}

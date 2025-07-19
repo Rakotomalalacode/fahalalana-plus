@@ -33,7 +33,7 @@ export default function DashboardPage() {
     return(
       <div>
         <TowCours />
-         <div className="grid w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+         <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-4 mt-6">
         <div className="bg-[#8B5CF6] flex justify-between py-4 items-center pr-4 rounded text-white">
           <CardContent>
             <p className="text-xl">Cours achetés</p>

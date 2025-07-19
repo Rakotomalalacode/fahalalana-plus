@@ -6,6 +6,7 @@ import { User } from "lucide-react"
 import { AddToCartButton } from "@/components/coursBuy/AddToCartButton"
 import { useParams, useRouter } from "next/navigation"
 import {IconLoader} from "@tabler/icons-react"
+import AdhesionComp from "@/components/autres/AdhesionComp"
 
 export default function DetailCoursPage() {
   const { id } = useParams()
@@ -54,6 +55,7 @@ const router = useRouter()
   if (!cours) return <div className="h-[500px] flex justify-center items-center"><IconLoader className="animate-spin h-8 w-8 text-muted-foreground" /></div>
 
   return (
+    <div>
     <div className="w-full lg:h-[500px] bg-[url(/images/bg-continue.png)] bg-cover font-outfit">
       <div className="bg-black/80 flex flex-wrap justify-between px-4 lg:px-9 py-9 w-full h-full">
         <div className="flex flex-col lg:self-center h-fit gap-4 w-full lg:w-[45%] text-white">
@@ -86,7 +88,7 @@ const router = useRouter()
           <div className="lg:flex justify-between mt-4">
             <div className="w-full">
               <button
-className="group relative w-full flex justify-center py-3 lg:px-16 border border-transparent text-lg font-medium rounded text-white bg-indigo-400 hover:bg-indigo-600/80 shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer disabled:opacity-50"
+                className="group relative w-full flex justify-center py-3 lg:px-16 border border-transparent text-lg font-medium rounded text-white bg-indigo-400 hover:bg-indigo-600/80 shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer disabled:opacity-50"
               >
                 Commencer le cours
               </button>
@@ -116,5 +118,9 @@ className="group relative w-full flex justify-center py-3 lg:px-16 border border
         </div>
       )}
     </div>
+    <div className="w-[95%] font-outfit m-auto my-9">
+        <AdhesionComp />
+      </div>
+      </div>
   )
 }
