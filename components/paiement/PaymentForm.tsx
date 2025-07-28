@@ -62,7 +62,7 @@ export default function PaymentForm({ cours, stylecl }: { cours: { id: string, t
     return (
         <Dialog>
             <DialogTrigger className={`${stylecl}`}>Commencer le cours</DialogTrigger>
-            <DialogContent className="rounded font-outfit">
+            <DialogContent className="rounded bg-accent font-outfit">
                 <DialogHeader>
                     <DialogTitle className="text-center">Payer le cours</DialogTitle>
                     {/* <DialogDescription>
@@ -112,9 +112,10 @@ export default function PaymentForm({ cours, stylecl }: { cours: { id: string, t
           <p className="text-xl">Modes de paiement</p>
         </div>
         <div className="bg-white h-16 w-full"></div>
+        
                     <Button onClick={handlePayment} 
                     // disabled={isLoading || !phone} 
-                    className="w-full rounded">
+                    className="w-full rounded bg-orangeme/90 hover:bg-orangeme">
                         {isLoading ? "Traitement..." : "Payer"}
                     </Button>
 

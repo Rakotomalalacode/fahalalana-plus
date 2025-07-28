@@ -47,17 +47,17 @@ const Categories = () => {
             ) : categories.length === 0 ? (
               <p className="font-outfit">Aucune catégorie trouvée.</p>
             ) : ( 
-            <div className="flex flex-wrap space-y-6 lg:space-x-3.5 px-4 justify-center lg:justify-start lg:px-[15px]">
+            <div className="space-y-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:px-[15px]">
 
                 {categories.map((cat) => (
                 <div 
                 key={cat.id}
                 onClick={()=>route.push(`/categories/${cat.id}`)}
-                 className="text-accent-foreground cursor-pointer shadow w-full h-fit lg:w-80 border p-4  rounded space-y-4 hover:bg-primary-foreground">
+                 className="text-accent-foreground cursor-pointer shadow w-full h-fit  border p-4  rounded space-y-4 hover:bg-primary-foreground">
                     <div className="flex gap-4">
-                        <Image src={cat.imageUrl} alt={cat.nom} className="h-20 w-20 rounded-sm object-cover" width={100} height={100} />
+                        <Image src={cat.imageUrl} alt={cat.nom} className="h-20 w-20 rounded-sm object-cover" width={500} height={500} />
                         <div className="flex flex-col gap-3">
-                            <p className="text-xl text-black font-meduim">{cat.nom}</p>
+                            <p className="text-xl text-black font-meduim">{cat.nom.slice(0, 16)}</p>
                             <div className="flex flex-col text-sm text-gray-600">
                                 <p className="flex gap-2 items-center"><CalendarArrowDown size={16} />{new Date(cat.createdAt).toLocaleDateString("fr-FR")}</p>
                                 <p className="flex gap-2 items-center"><IconCertificate size={16} />{cat.coursCount} cours - {cat.businesCount} business</p>

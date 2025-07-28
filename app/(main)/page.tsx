@@ -116,7 +116,7 @@ if (status !== "authenticated") {
                     </div>
                     <Link href="/busines-cours" ><button className="bg-orangeme w-full lg:w-fit hover:underline h-fit rounded hover:bg-orangeme/90 text-white py-2 px-4 ">Tout voir</button></Link>
                 </div>
-                <div className="w-[90%] m-auto">
+                <div className="w-[95%] m-auto">
                     <Carousel className="w-full">
                         <CarouselContent className="lg:p-x4 p-x py-8  ">
                             {cours.map((cours, index) => (

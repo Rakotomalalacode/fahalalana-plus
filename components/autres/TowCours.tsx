@@ -121,9 +121,9 @@ export default function TowCours() {
               {currentVideo.title}
             </h1>
             <p className="text-sm hidden lg:block lg:text-base mb-6">
-              {currentVideo.description}
+              {currentVideo.description.slice(0 ,200)} ...
             </p>
-            <p className="text-sm w-[85%] lg:hidden lg:text-base lg:mb-6">
+            <p className="text-sm w-[85%] lg:hidden lg:text-base mb-6">
               {currentVideo.description.slice(0, 100)}
             </p>
             <CoursPlus cours={currentVideo} />
@@ -134,21 +134,21 @@ export default function TowCours() {
         <div className="absolute right-4 top-1/2 transform -translate-y-1/2 space-y-3">
           <button
             onClick={toggleMute}
-            className="w-10 h-10 rounded bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white transition"
+            className="w-10 h-10 rounded-full bg-orangeme backdrop-blur text-white flex items-center justify-center hover:text-orangeme hover:bg-white transition"
           >
-            {isMuted ? <IconVolumeOff className="text-blue-600" /> : <IconVolume className="text-blue-600" />}
+            {isMuted ? <IconVolumeOff /> : <IconVolume />}
           </button>
           <button
             onClick={togglePlayPause}
-            className="w-10 h-10 rounded bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white transition"
+            className="w-10 h-10 rounded-full bg-orangeme backdrop-blur text-white flex items-center justify-center hover:text-orangeme hover:bg-white transition"
           >
-            {isPlaying ? <IconPlayerPauseFilled className="text-blue-600" /> : <IconPlayerPlayFilled className="text-blue-600" />}
+            {isPlaying ? <IconPlayerPauseFilled  /> : <IconPlayerPlayFilled  />}
           </button>
           <button
             onClick={replayVideo}
-            className="w-10 h-10 rounded bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white transition"
+            className="w-10 h-10 rounded-full bg-orangeme backdrop-blur text-white flex items-center justify-center hover:text-orangeme hover:bg-white transition"
           >
-            <IconRepeat className="text-blue-600" />
+            <IconRepeat />
           </button>
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function TowCours() {
                 className="md:basis-1/2 lg:basis-[290px]"
               >
                 <div
-                  className={`md:basis-1/2 lg:basis-[290px] rounded-md relative cursor-pointer hover:ring-1 hover:ring-green-600 ${currentVideo.id === video.id ? "ring-1 ring-orange-500" : ""
+                  className={`md:basis-1/2 lg:basis-[290px] rounded-md relative cursor-pointer hover:ring-1 hover:ring-green-600 ${currentVideo.id === video.id ? "ring-1 ring-orangeme" : ""
                     }`}>
                   <Image
                     src={video.thumbnail}

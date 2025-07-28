@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react"
 import { IconCategory, IconCell } from "@tabler/icons-react"
 import Link from "next/link"
+import { ScrollArea } from "../ui/scroll-area"
 
 type Categorie = {
   id: number
@@ -55,7 +56,7 @@ const Decouvrir = () => {
               Catégorie
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className="w-80">
+              <ScrollArea className="h-[500px] w-80">
                 {loading ? (
                   <p className="font-outfit">Chargement...</p>
                 ) : categories.length === 0 ? (
@@ -79,7 +80,7 @@ const Decouvrir = () => {
                     <IconCell size={18} /> Toutes les catégories
                   </Link>
                 </div>
-              </div>
+              </ScrollArea>
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>

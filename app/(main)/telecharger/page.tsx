@@ -16,15 +16,20 @@ export default function TelechargerPage() {
     else if (/linux/.test(userAgent)) setOs("linux")
   }, [])
 
-const buildDriveDownloadUrl = (id: string) =>
-  `https://drive.google.com/uc?export=download&id=${id}`;
+// const buildDriveDownloadUrl = (id: string) =>
+//   `https://drive.google.com/uc?export=download&id=${id}`;
+
+// const links = {
+//   android: buildDriveDownloadUrl(process.env.NEXT_PUBLIC_GOOGLE_APK!),
+//   windows: buildDriveDownloadUrl(process.env.NEXT_PUBLIC_GOOGLE_EXE!),
+//   linux: buildDriveDownloadUrl(process.env.NEXT_PUBLIC_GOOGLE_DEB!),
+// };
 
 const links = {
-  android: buildDriveDownloadUrl(process.env.NEXT_PUBLIC_GOOGLE_APK!),
-  windows: buildDriveDownloadUrl(process.env.NEXT_PUBLIC_GOOGLE_EXE!),
-  linux: buildDriveDownloadUrl(process.env.NEXT_PUBLIC_GOOGLE_DEB!),
+  android: "https://www.dropbox.com/scl/fi/1yzodx7b6hcrt2mmfc50p/falarohy.1.0.0.apk?rlkey=0s53h3nk9rgxpf3g5f9teh0id&st=elobt2wa&dl=1",
+  linux: "https://www.dropbox.com/scl/fi/fatb4eql3kl3nnewp4571/falarohy_1.0.0_amd64.deb?rlkey=tkhu77xytfe3xl1u2o4c0hr94&st=msu9jkrc&dl=1",
+  windows: "https://www.dropbox.com/scl/fi/fhz2axdd8eqg56uoumyah/falarohy-Setup-1.0.0.exe?rlkey=vt40t4aodb5fg7mostp3vi3rj&st=995r795p&dl=1",
 };
-
 
   return (
     <div className="flex flex-col font-outfit items-center justify-center p-8">

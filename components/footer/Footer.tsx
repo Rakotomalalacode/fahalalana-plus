@@ -97,7 +97,7 @@ const [businesList, setBusinesList] = useState<Busines[]>([])
 
     return (
         <footer className=" py-8 space-y-7  text-muted-foreground font-outfit shrink-0  bg-[#06141c] items-center justify-center">
-           <div className="space-y-6 px-4 lg:px-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4">
+           <div className="space-y-6 px-4 items-start lg:px-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4">
             <div className="space-y-6">
             <h2 className="text-2xl text-center lg:text-start font-bold text-white">
             Top Catégories

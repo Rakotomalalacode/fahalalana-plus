@@ -285,7 +285,7 @@ const handleDelete = async (id : string) => {
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="font-medium flex justify-between w-full py-0 ">
-                      <div className="lg:not-first:flex hidden gap-2">
+                      <div className="lg:flex hidden gap-2">
                         {completed.includes(video.id) ? <IconChecks className="text-green-500" /> : ""}
                         {video.titre}
                       </div>
